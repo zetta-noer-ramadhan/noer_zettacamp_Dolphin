@@ -15,7 +15,7 @@ const PurchaseBook = (book, taxPercentage = 0, discountPercentage = 0, purchased
         return null
     }
     if (book.stock == 0) {
-        console.log("Sorry for the inconvenience. We're running out of books :(")
+        console.log(`Sorry for the inconvenience.\nWe don't have enough ${book.title} :(`)
         return null
     }
 
@@ -103,7 +103,7 @@ const PurchaseBook = (book, taxPercentage = 0, discountPercentage = 0, purchased
             `Total price: ${displayPriceTotal}\n` +
             `--------------------\n` +
             `Cashier: ${receipt.detail.cashier}\n` +
-            `====================`
+            `====================\n`
 
         console.log(display)
     })(receipt)
@@ -124,11 +124,18 @@ const discountPercentage = 25
 
 const book = new Book("Bakat Menggonggong", "Dea Anugrah", 75000, true, 10)
 
-// const cart = []
-// cart.push(newBook)
-// cart.push(new Book("The Stranger", "Albert Camus", 80000, true, 12))
-// cart.push(new Book("Rumah Kertas", "Carlos María Domínguez", 45000, false, 5))
-// cart.push(new Book("Pemburu Akasara", "Ana María Shua", 44000, false, 10))
-// cart.push(new Book("Hidup di Luar Tempurung", "Benedict Anderson", 54000, false, 20))
-
 PurchaseBook(book, taxPercentage, discountPercentage, 10)
+
+
+
+const cart = []
+cart.push(book)
+cart.push(new Book("The Stranger", "Albert Camus", 80000, true, 12))
+cart.push(new Book("Rumah Kertas", "Carlos María Domínguez", 45000, false, 5))
+cart.push(new Book("Pemburu Akasara", "Ana María Shua", 44000, true, 10))
+cart.push(new Book("Hidup di Luar Tempurung", "Benedict Anderson", 54000, true, 20))
+
+cart.forEach(key => {
+    PurchaseBook(key, taxPercentage, discountPercentage, 10)
+    console.log('')
+})
