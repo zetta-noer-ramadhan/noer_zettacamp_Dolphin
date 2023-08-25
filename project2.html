@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2 - Embedded</title>
+    <style>
+        html {
+            font-family: monospace;
+        }
+
+        body {
+            width: 600px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table thead {
+            border-bottom: 1px lightgray solid;
+        }
+
+        table th,
+        table td {
+            padding: 1rem;
+        }
+
+        table tbody tr:hover {
+            font-weight: 600;
+            background: rgba(20, 20, 20, 0.1)!important;
+        }
+
+        table td:first-child,
+        table td:last-child {
+            text-align: center;
+        }
+
+        body>div {
+            display: none;
+        }
+
+        div table {
+            margin-bottom: 1rem;
+        }
+
+        div table:nth-child(1) tbody tr:nth-child(1) {
+            background: lightgreen;
+        }
+
+        div table:nth-child(2) tbody tr:nth-child(2) {
+            background: pink;
+        }
+
+        div table:nth-child(3) tbody tr:nth-child(3) {
+            background: lightblue;
+        }
+
+
+        section {
+            margin: 0 0 .5rem 0;
+        }
+
+        section h1 {
+            margin-left: 1rem;
+        }
+
+        section h1::before {
+            content: '#';
+        }
+
+        section:nth-of-type(1) tbody td {
+            text-align: center;
+        }
+
+        section:nth-of-type(1) tbody tr:nth-child(1) {
+            background: rgba(0, 128, 0, 0.3);
+        }
+
+        section:nth-of-type(2) tbody tr:nth-child(2) {
+            background: rgba(255, 0, 0, 0.3);
+        }
+
+        section:nth-of-type(3) tbody tr:nth-child(3) {
+            background: rgba(0, 0, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hobby Name</th>
+                    <th>Why?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Example Text</td>
+                    <td>Example Text</td>
+                </tr>
+                <tr>
+                    <td>Example Text</td>
+                    <td>Example Text</td>
+                </tr>
+                <tr>
+                    <td>Example Text</td>
+                    <td>Example Text</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hobby Name</th>
+                    <th>Why?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Example Text</td>
+                    <td>Example Text</td>
+                </tr>
+                <tr>
+                    <td>Example Text</td>
+                    <td>Example Text</td>
+                </tr>
+                <tr>
+                    <td>Example Text</td>
+                    <td>Example Text</td>
+                </tr>
+            </tbody>
+        </table>
+        <table>
+            <thead>
+                <tr>
+                    <th>Hobby Name</th>
+                    <th>Why?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Example Text</td>
+                    <td>Example Text</td>
+                </tr>
+                <tr>
+                    <td>Example Text</td>
+                    <td>Example Text</td>
+                </tr>
+                <tr>
+                    <td>Example Text</td>
+                    <td>Example Text</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <section id="hobby">
+        <h1>Hobby</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Hobby</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Reading books and manga</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Writing short story</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Music</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section id="movie">
+        <h1>Movie</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Title</th>
+                    <th>Director</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>The Head Hunter</td>
+                    <td>Jordan Downey</td>
+                    <td>2018</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>The Lord of the Rings: The Fellowship of the Ring</td>
+                    <td>Peter Jackson</td>
+                    <td>2001</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Modus Anomali</td>
+                    <td>Joko Anwar</td>
+                    <td>2012</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>The Dark Knight</td>
+                    <td>Christopher Nolan</td>
+                    <td>2008</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section id="music">
+        <h1>Music</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Title</th>
+                    <th>Album</th>
+                    <th>Artist</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>The Dead Flag Blues</td>
+                    <td>F♯ A♯ ∞</td>
+                    <td>Godspeed You! Black Emperor</td>
+                    <td>1997</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Concorde</td>
+                    <td>Ants From Up There</td>
+                    <td>Black Country, New&nbsp;Road</td>
+                    <td>2022</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>君という花</td>
+                    <td>君繋ファイブエム</td>
+                    <td>Asian Kung-Fu Generation</td>
+                    <td>2003</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Fateh</td>
+                    <td>Fateh</td>
+                    <td>Morgue Vanguard, Still</td>
+                    <td>2014</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Menyulam Azzam</td>
+                    <td>Majmu' Swara</td>
+                    <td>Anonymous Alliance</td>
+                    <td>2019</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</body>
+
+</html>
