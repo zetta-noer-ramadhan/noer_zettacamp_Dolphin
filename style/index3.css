@@ -1,0 +1,89 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace !important;
+}
+
+html {
+    height: 100vh;
+}
+
+body {
+    height: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+p:not([class]) {
+    margin-bottom: 2rem;
+    width: 48ch;
+    font-style: italic;
+    font-family: serif;
+}
+
+#container {
+    height: 100%;
+    width: 800px;
+    margin: 0 auto;
+    padding: 4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.storage,
+.sold {
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    /* height: 80%; */
+}
+
+.storage > h2,
+.sold > h2 {
+    margin-bottom: 1rem;
+}
+
+.storage > h2::before,
+.sold > h2::before {
+    content: '#';
+}
+
+.storage__list,
+.sold__list {
+    overflow: auto;
+    /* height: 100%; */
+    /* overflow-y: scroll; */
+}
+
+.storage__item,
+.sold__item {
+    padding: 1rem;
+    border: 1px lightgray solid;
+}
+
+.storage__item__image,
+.sold__item__image {
+    width: 25%;
+    margin-right: 1rem;
+    vertical-align: middle;
+}
+
+.storage__item > div,
+.sold__item > div {
+    display: inline-block;
+    vertical-align: middle;
+    width: calc(75% - 2rem);
+}
+
+.storage__item__name::after,
+.sold__item__name::after {
+    content: '!';
+    visibility: hidden;
+}
+
+.storage__item__description,
+.sold__item__desctiption {
+}
