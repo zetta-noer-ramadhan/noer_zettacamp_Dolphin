@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <style>
+        input, textarea, select {
+            width: 300px;
+        }
+        input[type="radio"], input[type="checkbox"] {
+            width: auto;
+        }
+    </style>
+    <script>
+        const get = (name) => document.getElementsByName(name)
+        function users() {
+
+            fname = get("firstName")
+            lname = get("lastName")
+            bio = get("biography")
+            age = get("age")
+            gender = get("gender")
+            email = get("email")
+            telephone = get("telephone")
+            link = get("link")
+            select = get("select")
+
+            console.log({
+                fname, lname, bio, age, gender, email, telephone, link, select
+            })
+            // alert("from user")
+        }
+    </script>
+</head>
+
+<body style="font-family: monospace;">
+    <form name="user" onsubmit="users()">
+
+        <label for="firstName">First Name:</label> <br>
+        <input type="text" name="firstName" id="firstName" required> <br>
+        <br>
+
+        <label for="lastName">Last Name:</label> <br>
+        <input type="text" name="lastName" id="lastName"> <br>
+        <br>
+
+        <label for="biography">Biography:</label> <br>
+        <textarea name="biography" id="biography" cols="30" rows="10"></textarea> <br>
+        <br>
+
+        <label for="age">Age:</label> <br>
+        <input type="number" name="age" id="age" min="1"> <br>
+        <br>
+
+        <label for="gender">Gender:</label> <br>
+        <div>
+            <span>
+                <input type="radio" name="gender" id="female" >
+                <label for="female">Female</label>
+            </span>
+            <span>
+                <input type="radio" name="gender" id="male" >
+                <label for="male">Male</label>
+            </span>
+        </div>
+        <br>
+
+        <label for="email">Email:</label> <br>
+        <input type="email" name="email" id="email"> <br>
+        <br>
+
+        <label for="telephone">Telephone:</label> <br>
+        <input type="tel" name="telephone" id="telephone" minlength="11" > <br>
+        <br>
+
+        <label for="link">Website/Socials:</label> <br>
+        <input type="url" name="link" id="link"> <br>
+        <br>
+
+        <label for="select">A Phrase in a Select Element</label> <br>
+        <select name="select" id="select">
+            <option value="hello" selected>Hello</option>
+            <option value="world">World</option>
+        </select> <br>
+        <br>
+
+        <label for="datetime">When?</label> <br>
+        <input type="datetime-local" name="datetime" id="datetime"> <br>
+        <br>
+
+        <label for="check">What kind of checkbox is this?</label> <br>
+        <div>
+            <span>
+                <input type="checkbox" name="check" id="checka">
+                <label for="checka">A</label>
+            </span>
+            <span>
+                <input type="checkbox" name="check" id="checkb">
+                <label for="checkb">B</label>
+            </span>
+            <span>
+                <input type="checkbox" name="check" id="checkc">
+                <label for="checkc">C</label>
+            </span>
+        </div>
+
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+</body>
+
+</html>

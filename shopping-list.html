@@ -1,0 +1,154 @@
+<html>
+
+<head>
+    <title>Shopping List</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+        thead th {
+            padding: 1rem;
+        }
+        tbody td {
+            max-width: 30rem;
+            min-width: 5rem;
+            text-align: center;
+            padding: 2rem;
+        }
+        tfoot td {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        tbody td:nth-child(2), tbody td:nth-child(3) > ul {
+            text-align: left;
+        }
+        thead tr {
+            border-bottom: 1px black solid;
+        }
+        tbody tr {
+            border-bottom: 1px lightgray solid;
+        }
+        section {
+            margin: 0 auto;
+            margin-bottom: 5rem;
+        }
+        #shopping-list {
+            max-width: 300px;
+            border: 1px black solid;
+            padding: 1rem;
+        }
+        #shopping-list h1 {
+            text-align: center;
+        }
+        #things-to-buy {
+            max-width: 80vw;
+        }
+    </style>
+</head>
+
+<body style="font-family: monospace;">
+    <section id="shopping-list">
+        <h1>&iexcl;WANTED&excl;</h1>
+        <dl>
+            <dt><strong>Indomie Goreng</strong></dt>
+            <dd>
+                Drug. Basically a drug. No doctor can save you.
+            </dd>
+            <br>
+            <dt><strong>Chicken Egg</strong></dt>
+            <dd>
+                Something that came from chicken.
+            </dd>
+            <br>
+            <dt><strong>Pepsodent Charcoal White Toothpaste</strong></dt>
+            <dd>
+                Pepsodent Charcoal White Toothpaste, designed by blending high quality purified Charcoal and the essence of Lemon, Contains activated formula that gently polishes away tooth stains, restoring your white smile naturally. For best results, brush twice a day and visit your dentist regularly.
+            </dd>
+        </dl>
+    </section>
+    <br>
+    <section id="things-to-buy">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">Item</th>
+                    <th>Variant</th>
+                    <th>Amount</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <img src="./assets/indomie.png" width="100" alt="">
+                    </td>
+                    <td>
+                        <p>
+                            <b>
+                                Indomie Goreng
+                            </b>
+                            <br>
+                            <i>Drug. Basically a drug. No doctor can save you.</i>
+                        </p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Original</li>
+                            <li>Rendang</li>
+                        </ul>
+                    </td>
+                    <td>10</td>
+                    <td>Rp3.500</td>
+                    <td>Rp35.0000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Egg.jpg" width="100" alt="">
+                    </td>
+                    <td>
+                        <p>
+                            <b>Egg</b>
+                            <br>
+                            <i>Something that came from chicken.</i>
+                        </p>
+                    </td>
+                    <td>-</td>
+                    <td>2</td>
+                    <td>Rp1.000</td>
+                    <td>Rp2.000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="https://www.pepsodent.com/sk-eu/content/dam/brands/smile/global_use/1681585-charcoal.jpg" width="100" alt="">
+                    </td>
+                    <td>
+                        <p>
+                            <b>Pepsodent Charcoal White</b>
+                            <br>
+                            <!-- <i>Pepsodent Charcoal White Toothpaste, designed by blending high quality purified Charcoal and the essence of Lemon, Contains activated formula that gently polishes away tooth stains, restoring your white smile naturally. For best results, brush twice a day and visit your dentist regularly.</i> -->
+                        </p>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>90g</li>
+                        </ul>
+                    </td>
+                    <td>1</td>
+                    <td>Rp20.000</td>
+                    <td>Rp20.000</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4"></td>
+                    <th>Total</th>
+                    <td>Rp57.000</td>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+</body>
+
+</html>
