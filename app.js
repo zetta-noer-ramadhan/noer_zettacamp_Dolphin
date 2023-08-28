@@ -167,10 +167,11 @@ const PurchaseBook = (book, taxPercentage, discountPercentage, bookStock, bookPu
             `Payment due: \n${receipt.detail.credit_due_month.map(val => val + '\t: Rp' + receipt.detail.credit_per_month).join(`\n`)}\n` +
             `====================\n`
 
-        console.log(display)
-        console.log(receipt.detail.credit_due_month)
+        // console.log(display)
+        // console.log(receipt)
     })(receipt);
 
+    console.log(receipt.detail.credit_due_month)
     return receipt
 }
 
@@ -186,3 +187,50 @@ const discountPercentage = 25
 
 const book = new Book("Bakat Menggonggong", "Dea Anugrah", 75000, true)
 PurchaseBook(book, taxPercentage, discountPercentage, 20, 10, 5)
+
+const isCart = false
+
+if (isCart) {
+    const cart = []
+    cart.push(book)
+    cart.push(new Book("The Stranger", "Albert Camus", 80000, true, 12))
+    cart.push(new Book("Rumah Kertas", "Carlos María Domínguez", 45000, false, 5))
+    cart.push(new Book("Pemburu Akasara", "Ana María Shua", 44000, true, 10))
+    cart.push(new Book("Hidup di Luar Tempurung", "Benedict Anderson", 54000, true, 20))
+    console.log('cart', cart, '\n')
+
+    const shiftedBook = cart.shift()
+    console.log('shifted book', shiftedBook)
+    console.log('shifted cart', cart, '\n')
+
+    cart.unshift(new Book("Setelah Boombox Usai Menyalak", "Herry Sutresna", 75000))
+    console.log('unshifted cart', cart, '\n')
+
+    const poppedBook = cart.pop()
+    console.log('popped book', poppedBook)
+    console.log('popped cart', cart, '\n')
+
+    cart
+        .filter(item => item.price < 60000)
+        .map(item => item.title + ' by ' + item.author)
+        .forEach((item, index) => {
+            console.log((index + 1), item)
+        })
+
+    const cartPrice = cart
+        .map(item => item.price)
+        .reduce((total, current) => total + current, 0)
+    console.log('\ncart price', cartPrice, '\n')
+
+    cart.map((item, index) => {
+        const item_receipt = PurchaseBook(item,taxPercentage,discountPercentage, 10, 10, index + 5)
+        return [
+            item.title,
+            item.price,
+            item_receipt.detail.credit_duration,
+            item_receipt.detail.credit_due_month
+        ]
+    }).forEach(item => {
+        console.log(item[0], item[1], item[2], item[3])
+    })
+}
