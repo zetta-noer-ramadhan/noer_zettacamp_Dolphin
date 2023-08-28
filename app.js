@@ -14,9 +14,19 @@ const PurchaseBook = (book, taxPercentage = 0, discountPercentage = 0, purchased
         console.log('Book? What is Book?')
         return null
     }
+    if(book.stock < purchasedAmount) {
+        console.log(`Sorry for the inconvenience.\nWe don't have enough ${book.title} :(`)
+        return {
+            msg: "Out of Stock",
+            book
+        }
+    }
     if (book.stock == 0) {
         console.log(`Sorry for the inconvenience.\nWe don't have enough ${book.title} :(`)
-        return null
+        return {
+            msg: "Out of Stock",
+            book
+        }
     }
 
     const receipt = {
@@ -57,13 +67,14 @@ const PurchaseBook = (book, taxPercentage = 0, discountPercentage = 0, purchased
             price_after_discount_after_tax: priceAfterDiscountAfterTax,
         }
     }
-
+    const MASTER_STOCK = book.stock
     for (let i = 0; i < purchasedAmount; i++) {
-        if(receipt.book.stock == 0) break
+        if (receipt.book.stock == 0) break
         receipt.detail.price_total += receipt.detail.price_after_discount_after_tax
         receipt.book.stock--
         receipt.detail.item_total++
     }
+
 
     ((receipt) => {
         const displayBookPrice = "Rp" + receipt.book.price
@@ -87,7 +98,7 @@ const PurchaseBook = (book, taxPercentage = 0, discountPercentage = 0, purchased
             `====================\n` +
             `Price: ${displayBookPrice}\n` +
             `Status: ${displayStock}\n` +
-            `Stock: ${receipt.book.stock}\n`+
+            `Stock: ${receipt.book.stock}/${MASTER_STOCK}\n` +
             `--------------------\n` +
             `Tax%: ${displayTaxPercentage}\n` +
             `Tax: ${displayTaxAmmount}\n` +
@@ -105,7 +116,7 @@ const PurchaseBook = (book, taxPercentage = 0, discountPercentage = 0, purchased
             `Cashier: ${receipt.detail.cashier}\n` +
             `====================\n`
 
-        console.log(display)
+        // console.log(display)
     })(receipt)
 
     return receipt
@@ -122,20 +133,31 @@ const Book = function (title, author, price, onSale = false, stock = 1) {
 const taxPercentage = 5
 const discountPercentage = 25
 
-const book = new Book("Bakat Menggonggong", "Dea Anugrah", 75000, true, 10)
+const book = new Book("Bakat Menggonggong", "Dea Anugrah", 75000, true, 0)
 
-PurchaseBook(book, taxPercentage, discountPercentage, 10)
+PurchaseBook(book, taxPercentage, discountPercentage, 0)
 
+const isCart = true
 
+if (isCart) {
+    const cart = []
+    cart.push(book)
+    cart.push(new Book("The Stranger", "Albert Camus", 80000, true, 12))
+    cart.push(new Book("Rumah Kertas", "Carlos María Domínguez", 45000, false, 5))
+    cart.push(new Book("Pemburu Akasara", "Ana María Shua", 44000, true, 10))
+    cart.push(new Book("Hidup di Luar Tempurung", "Benedict Anderson", 54000, true, 20))
 
-const cart = []
-cart.push(book)
-cart.push(new Book("The Stranger", "Albert Camus", 80000, true, 12))
-cart.push(new Book("Rumah Kertas", "Carlos María Domínguez", 45000, false, 5))
-cart.push(new Book("Pemburu Akasara", "Ana María Shua", 44000, true, 10))
-cart.push(new Book("Hidup di Luar Tempurung", "Benedict Anderson", 54000, true, 20))
+    let itemCount = 0
+    let itemPriceTotal = 0
+    cart.forEach(key => {
+        const data = PurchaseBook(key, taxPercentage, discountPercentage, 10)
+        if (data.msg) {
+            console.log(data.book.title, 'is', data.msg)
+        } else {
+            itemCount += data.detail.item_total
+            itemPriceTotal += data.detail.price_total
+        }
+    })
 
-cart.forEach(key => {
-    PurchaseBook(key, taxPercentage, discountPercentage, 10)
-    console.log('')
-})
+    console.log(`You buy ${itemCount} books for Rp${itemPriceTotal}`)
+}

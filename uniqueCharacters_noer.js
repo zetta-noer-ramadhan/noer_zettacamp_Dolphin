@@ -14,5 +14,5 @@ function hasUniqueCharacters(str) {
     return str.length == strSet.size
 }
 
-const data = "thelazybrownfx"
-console.log(hasUniqueCharacters(data))
+console.log(hasUniqueCharacters("nnoer")); // Output: true
+// console.log(hasUniqueCharacters("hello")); // Output: false
