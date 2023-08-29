@@ -99,19 +99,17 @@ const PurchaseBook = (book, taxPercentage, discountPercentage, bookStock, bookPu
             [31, "Dec"]
         ]
 
-        const indexOfCurrentMonth = 7
+        const indexOfCurrentMonth = 1
         const tempArray = new Array(creditDuration).fill(0)
 
         const monthOfCredit = tempArray.map((_, index) => {
-            const currentIndexofMonth = (indexOfCurrentMonth + 1 + index) % 12
-            if (currentIndexofMonth === 0) currentYear++
+            const currentIndexOfMonth = (indexOfCurrentMonth + 1 + index) % 12
+            if (currentIndexOfMonth === 0) currentYear++
             return [
-                ...dayInMonth[currentIndexofMonth],
+                ...dayInMonth[currentIndexOfMonth],
                 currentYear
             ]
-        }).map(val => {
-            return dueDate + ' ' + val[1] + ' ' + val[2]
-        })
+        }).map(val => dueDate + ' ' + val[1] + ' ' + val[2])
 
         const creditPerMonth = receipt.detail.price_total / creditDuration
 
@@ -171,7 +169,7 @@ const PurchaseBook = (book, taxPercentage, discountPercentage, bookStock, bookPu
         // console.log(receipt)
     })(receipt);
 
-    console.log(receipt.detail.credit_due_month)
+    // console.log(receipt.detail.credit_due_month)
     return receipt
 }
 
@@ -186,9 +184,9 @@ const taxPercentage = 5
 const discountPercentage = 25
 
 const book = new Book("Bakat Menggonggong", "Dea Anugrah", 75000, true)
-PurchaseBook(book, taxPercentage, discountPercentage, 20, 10, 5)
+PurchaseBook(book, taxPercentage, discountPercentage, 20, 10, 13)
 
-const isCart = false
+const isCart = true
 
 if (isCart) {
     const cart = []
@@ -203,8 +201,9 @@ if (isCart) {
     console.log('shifted book', shiftedBook)
     console.log('shifted cart', cart, '\n')
 
-    cart.unshift(new Book("Setelah Boombox Usai Menyalak", "Herry Sutresna", 75000))
+    const unshifted = cart.unshift(new Book("Setelah Boombox Usai Menyalak", "Herry Sutresna", 75000))
     console.log('unshifted cart', cart, '\n')
+    console.log('unshifted', unshifted)
 
     const poppedBook = cart.pop()
     console.log('popped book', poppedBook)
@@ -223,7 +222,7 @@ if (isCart) {
     console.log('\ncart price', cartPrice, '\n')
 
     cart.map((item, index) => {
-        const item_receipt = PurchaseBook(item,taxPercentage,discountPercentage, 10, 10, index + 5)
+        const item_receipt = PurchaseBook(item, taxPercentage, discountPercentage, 10, 10, index + 5)
         return [
             item.title,
             item.price,
