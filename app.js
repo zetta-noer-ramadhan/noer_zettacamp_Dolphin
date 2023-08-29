@@ -114,7 +114,7 @@ const PurchaseBook = (book, taxPercentage, discountPercentage, bookStock, bookPu
 
     // these lines are used to see whether
     // the amount of credit payment equal to amout of price total
-    const credit_total = credit_detail.reduce((total, current) => total + current.payment_amount, 0)
+    // const credit_total = credit_detail.reduce((total, current) => total + current.payment_amount, 0)
 
     console.log(credit_detail)
     // console.log({
@@ -137,4 +137,4 @@ const taxPercentage = 5
 const discountPercentage = 25
 
 const book = new Book("Bakat Menggonggong", "Dea Anugrah", 75000, true)
-PurchaseBook(book, taxPercentage, discountPercentage, 20, 10, 5)
+PurchaseBook(book, taxPercentage, discountPercentage, 20, 10, 10)

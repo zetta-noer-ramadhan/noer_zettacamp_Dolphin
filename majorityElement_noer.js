@@ -22,9 +22,9 @@ function majorityElement(nums) {
         temp[item]++
     })
 
-    console.log(temp)
+    // console.log(temp)
 
-    const maxFreq = Object
+    let maxFreq = Object
         .entries(temp)
         .reduce((prev, curr) => prev[1] >= curr[1] ? prev : curr)[1]
 
@@ -41,6 +41,8 @@ function majorityElement(nums) {
     return +result
 }
 
+console.log(majorityElement([3, 2, 1, 3])); // Output: 2
+console.log(majorityElement([1, 2, 3, 4])); // Output: 2
 console.log(majorityElement([2, 3, 2, 3])); // Output: 2
 console.log(majorityElement([3, 2, 2, 3])); // Output: 3
 console.log(majorityElement([2, 2, 1, 1, 1, 2, 2])); // Output: 2
