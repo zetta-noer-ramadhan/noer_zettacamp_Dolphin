@@ -1,3 +1,7 @@
+const FindGroupByProperty = (data, property, param) => data.filter(item => item[property] === param)
+const FindGroupByGenre = (data, param) => FindGroupByProperty(data, 'genre', param)
+const FindGroupByArtist = (data, param) => FindGroupByProperty(data, 'artist', param)
+
 const GroupByProperty = (data, property) => {
     const propertyList = new Set(data.map(item => item[property]))
     return Array.from(propertyList).map(prop => ({
@@ -57,10 +61,12 @@ AddToList(list, "Sample Title 10", "Sample", "Sample Album 1", 2024, "Genre4", 5
 AddToList(list, "Sample Title 11", "Sample Artist 4", "Sample Album 2", 2023, "Genre2", 700)
 
 // console.log(list)
+console.log('GBA', GroupByArtist(list), '\n')
+console.log('GBG', GroupByGenre(list), '\n')
+console.log('GWD', GroupWithDuration(list), '\n')
 
-console.log(GroupByGenre(list))
-console.log(GroupByArtist(list))
-console.log(GroupWithDuration(list))
+console.log('FGA', FindGroupByArtist(list, 'Sample'), '\n')
+console.log('FGG', FindGroupByGenre(list, 'Genre1'))
 
 
 // const objectLog = (args) => console.log(JSON.stringify(args, null, 2))
