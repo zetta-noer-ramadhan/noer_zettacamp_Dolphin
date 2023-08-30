@@ -12,10 +12,8 @@ const GroupByProperty = (data, property) => {
 const GroupByGenre = (data) => GroupByProperty(data, 'genre')
 const GroupByArtist = (data) => GroupByProperty(data, 'artist')
 
-const GetRandom = (lower, upper) => Math.floor(Math.random() * (upper - lower + 1) + lower)
-
 const oneHourInSecond = 60 * 60 // 3600
-
+const GetRandom = (lower, upper) => Math.floor(Math.random() * (upper - lower + 1) + lower)
 const GroupWithDuration = (data) => {
     const group = []
     while (true) {
@@ -30,6 +28,8 @@ const GroupWithDuration = (data) => {
         data: group
     }
 }
+
+
 
 
 const Song = function (title, artist, album, year, genre, duration) {
@@ -60,10 +60,14 @@ AddToList(list, "Sample Title 9", "Sample Artist", "Sample Album", 2023, "Genre3
 AddToList(list, "Sample Title 10", "Sample", "Sample Album 1", 2024, "Genre4", 500)
 AddToList(list, "Sample Title 11", "Sample Artist 4", "Sample Album 2", 2023, "Genre2", 700)
 
+
+
+
 // console.log(list)
-console.log('GBA', GroupByArtist(list), '\n')
-console.log('GBG', GroupByGenre(list), '\n')
-console.log('GWD', GroupWithDuration(list), '\n')
+
+// console.log('GBA', GroupByArtist(list), '\n')
+// console.log('GBG', GroupByGenre(list), '\n')
+// console.log('GWD', GroupWithDuration(list), '\n')
 
 console.log('FGA', FindGroupByArtist(list, 'Sample'), '\n')
 console.log('FGG', FindGroupByGenre(list, 'Genre1'))
