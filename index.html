@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./assets/style.css">
+</head>
+
+<body>
+    <header>
+        <h1>&hearts;</h1>
+    </header>
+    <section class="books">
+        <table id="book__table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Description</th>
+                    <th>Count</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="book__table__body">
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">
+                        <span onclick="handleClear()">Clear Inventory</span>
+                    </td>
+                    <td colspan="3">
+                        <span onclick="handleAdd()">Add New Book</span>
+                    </td>
+                </tr>
+                <tr id="book-add" style="display: none;">
+                    <form action="#" name="book-add-form" id="book-add-form">
+                        <td></td>
+                        <td>
+                            <input type="text" name="book-add-title" placeholder="Book Title">
+                        </td>
+                        <td>
+                            <input type="text" name="book-add-author" placeholder="Book Author">
+                        </td>
+                        <td>
+                            <textarea cols="30" rows="1" name="book-add-desc" placeholder="Book Description"></textarea>
+                        </td>
+                        <td>
+                            <input type="number" name="book-0-number" value="1">
+                        </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <span onclick="handleAddSave()">add</span>
+                                </li>
+                                <li>
+                                    <span onclick="handleAddCancel()">cancel</span>
+                                </li>
+                            </ul>
+                        </td>
+                    </form>
+                </tr>
+            </tfoot>
+        </table>
+    </section>
+    <footer>
+        <span>&copy;</span>
+    </footer>
+
+    <script src="./assets/script.js"></script>
+</body>
+
+</html>
