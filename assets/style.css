@@ -68,6 +68,16 @@ tfoot tr:last-child {
 tfoot tr td {
     padding: 2rem 0.5rem;
 }
+tfoot section {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+tfoot span {
+    display: inline-block;
+    /* width: calc(50% - 0.5rem); */
+    flex: 1;
+}
 
 .action--edit {
     display: block;
@@ -121,7 +131,7 @@ table span.action--edit:hover {
     color: white;
     background: skyblue;
 }
-table span.action--save:hover{
+table span.action--save:hover {
     color: white;
-    background: #10a023
+    background: #10a023;
 }

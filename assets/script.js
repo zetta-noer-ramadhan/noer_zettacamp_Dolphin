@@ -40,16 +40,18 @@ const BookModel = {
         storage.update('inventory', state.inventory)
     },
     deleteBook: (id) => {
+        storage.delete('inventory')
         state.inventory = state.inventory.filter(book => book.id !== id)
         storage.update('inventory', state.inventory)
     },
     deleteBooks: () => {
+        state.inventory = []
         storage.clear()
     }
 }
 
 
-const handleEdit = (id) => {
+const HandleEdit = (id) => {
     const bookRow = document.getElementById('book-' + id)
     const input = bookRow.querySelectorAll('input')
 
@@ -67,7 +69,7 @@ const handleEdit = (id) => {
     bookRow.querySelector('.action--delete').className = "action--delete hide"
 
 }
-const handleSave = (id) => {
+const HandleSave = (id) => {
     const bookRow = document.getElementById('book-' + id)
     const input = bookRow.querySelectorAll('input')
     const textarea = bookRow.querySelector('textarea')
@@ -94,7 +96,7 @@ const handleSave = (id) => {
         BookModel.updateBook(id, title, author, desc, count)
     }
 }
-const handleCancel = (id) => {
+const HandleCancel = (id) => {
     const bookRow = document.getElementById('book-' + id)
     const input = bookRow.querySelectorAll('input')
 
@@ -113,7 +115,7 @@ const handleCancel = (id) => {
 
     RefreshRow(id)
 }
-const handleDelete = (id) => {
+const HandleDelete = (id) => {
     const bookRow = document.getElementById('book-' + id)
     const input = bookRow.querySelectorAll('input')
 
@@ -125,11 +127,11 @@ const handleDelete = (id) => {
         RefreshTable()
     }
 }
-const handleAdd = () => {
+const HandleAdd = () => {
     const element = document.querySelector('#book-add')
     element.style.display = 'table-row'
 }
-const handleAddSave = () => {
+const HandleAddSave = () => {
     const element = document.querySelector('#book-add')
     const input = element.querySelectorAll('input')
     const [title, author, count] = Array.from(input).map(({ value }) => value)
@@ -142,11 +144,11 @@ const handleAddSave = () => {
     if (!count) alert('please input book count')
     if (title && author && count && desc) {
         BookModel.addBook(title, author, desc, count)
-        handleAddCancel()
+        HandleAddCancel()
         RefreshTable()
     }
 }
-const handleAddCancel = () => {
+const HandleAddCancel = () => {
     const element = document.querySelector('#book-add')
     element.style.display = 'none'
 
@@ -158,24 +160,24 @@ const handleAddCancel = () => {
     const textarea = element.querySelector('textarea')
     textarea.value = ""
 }
-const handleClear = () => {
-    const clearConfirmation = confirm(`Are you sure to clear the inventory?`)
-    if (clearConfirmation) {
-        storage.clear()
-        BookModel.readBooks()
-        RefreshTable()
+const HandleClear = () => {
+    if (state.inventory && state.inventory.length > 0) {
+        const clearConfirmation = confirm(`Are you sure to clear the inventory?`)
+        if (clearConfirmation) {
+            BookModel.deleteBooks()
+            RefreshTable()
+        }
+    } else {
+        alert(`Nothing to clear`)
     }
-
 }
 
 
 const RefreshRow = (id) => {
-
     const bookRow = document.getElementById('book-' + id)
     const input = bookRow.querySelectorAll('input')
 
     const currentBook = BookModel.readBook(id)[0]
-    // console.log(currentBook)
 
     Array.from(input).forEach(item => {
         console.log(id, item.name, item.value)
@@ -193,17 +195,21 @@ const RefreshTable = () => {
         item.remove()
     })
 
-    console.log('refreshing')
     if (state.inventory && state.inventory.length > 0) {
-
         Array.from(state.inventory).forEach(({ id, title, author, description, count }) => {
             table.appendChild(PrepareTableItem(id, title, author, description, count))
         })
-    }else{
-        console.log('hello')
+
+        const tableFoot = document.querySelector("#book__table tfoot tr td")
+        tableFoot.querySelector('.action--delete').className = "action--delete"
+
+    } else {
         const row = document.createElement("tr")
         row.innerHTML = `<td colspan="6" style="padding: 1.5rem 0rem;">No Books :(</td>`
         table.appendChild(row)
+
+        const tableFoot = document.querySelector("#book__table tfoot tr td")
+        tableFoot.querySelector('.action--delete').className = "action--delete hide"
     }
 
 }
@@ -228,10 +234,10 @@ const PrepareTableItem = (id, title, author, description, count) => {
             <input type="number" name="book-${id}-number" value="${count}" disabled>
         </td>
         <td>
-            <span class='action--edit' onclick="handleEdit(${id})">Edit</span>
-            <span class='action--save hide' onclick="handleSave(${id})">Save</span>
-            <span class='action--cancel hide' onclick="handleCancel(${id})">Cancel</span>
-            <span class='action--delete' onclick="handleDelete(${id})">Delete</span>
+            <span class='action--edit' onclick="HandleEdit(${id})">Edit</span>
+            <span class='action--save hide' onclick="HandleSave(${id})">Save</span>
+            <span class='action--cancel hide' onclick="HandleCancel(${id})">Cancel</span>
+            <span class='action--delete' onclick="HandleDelete(${id})">Delete</span>
         </td>
     </form>`
 
@@ -239,7 +245,7 @@ const PrepareTableItem = (id, title, author, description, count) => {
 }
 
 
-const main = () => {
+const Main = () => {
 
     if (storage.read('inventory')) {
         BookModel.readBooks()
@@ -250,4 +256,4 @@ const main = () => {
     RefreshTable()
 }
 
-main()
+Main()
