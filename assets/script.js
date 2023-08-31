@@ -221,20 +221,10 @@ const PrepareTableItem = (id, title, author, description, count) => {
             <input type="number" name="book-${id}-number" value="${count}" disabled>
         </td>
         <td>
-            <ul>
-                <li class='action--edit'>
-                    <span onclick="handleEdit(${id})">Edit</span>
-                </li>
-                <li class='action--save hide'>
-                    <span onclick="handleSave(${id})">Save</span>
-                </li>
-                <li class='action--cancel hide'>
-                    <span onclick="handleCancel(${id})">Cancel</span>
-                </li>
-                <li class='action--delete'>
-                    <span onclick="handleDelete(${id})">Delete</span>
-                </li>
-            </ul>
+            <span class='action--edit' onclick="handleEdit(${id})">Edit</span>
+            <span class='action--save hide' onclick="handleSave(${id})">Save</span>
+            <span class='action--cancel hide' onclick="handleCancel(${id})">Cancel</span>
+            <span class='action--delete' onclick="handleDelete(${id})">Delete</span>
         </td>
     </form>`
 
