@@ -193,10 +193,17 @@ const RefreshTable = () => {
         item.remove()
     })
 
-    if (state.inventory) {
+    console.log('refreshing')
+    if (state.inventory && state.inventory.length > 0) {
+
         Array.from(state.inventory).forEach(({ id, title, author, description, count }) => {
             table.appendChild(PrepareTableItem(id, title, author, description, count))
         })
+    }else{
+        console.log('hello')
+        const row = document.createElement("tr")
+        row.innerHTML = `<td colspan="6" style="padding: 1.5rem 0rem;">No Books :(</td>`
+        table.appendChild(row)
     }
 
 }
@@ -230,6 +237,7 @@ const PrepareTableItem = (id, title, author, description, count) => {
 
     return row
 }
+
 
 const main = () => {
 

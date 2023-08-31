@@ -14,6 +14,7 @@ body {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    align-items: center;
 }
 
 header,
@@ -27,9 +28,6 @@ header {
 footer {
     padding: 1rem 0;
 }
-.books {
-    flex: 1;
-}
 
 table {
     border-collapse: collapse;
@@ -37,7 +35,7 @@ table {
     text-align: center;
 }
 table td {
-    padding: .5rem;
+    padding: 0.5rem;
 }
 table tbody ul,
 table tfoot ul {
@@ -51,13 +49,13 @@ tbody tr td input,
 tbody tr td textarea {
     text-align: center;
 }
-table tbody tr:nth-child(even){
-    background: rgba(22, 146, 111, 0.03);
+table tbody tr:nth-child(even) {
+    background: rgba(22, 146, 111, 0.05);
 }
 thead {
     border-bottom: 1px lightgray solid;
 }
-thead tr th{
+thead tr th {
     padding: 1.5rem 1rem;
 }
 tfoot {
@@ -68,7 +66,7 @@ tfoot tr:last-child {
     border-bottom: 1px lightgray solid;
 }
 tfoot tr td {
-    padding: 2rem;
+    padding: 2rem 0.5rem;
 }
 
 .action--edit {
@@ -97,14 +95,33 @@ textarea:disabled {
     color: black;
 }
 
-input, textarea {
-    padding: .5rem 1rem;
+input,
+textarea {
+    padding: 0.5rem 1rem;
     text-align: center;
 }
 
 table span {
     border: 1px black solid;
-    padding: .5rem 1rem;
-    margin: .5rem 0;
+    padding: 0.5rem 1rem;
+    margin: 0.5rem 0;
     cursor: pointer;
+}
+
+table span:hover {
+    color: white;
+    background: #000;
+}
+
+table span.action--delete:hover {
+    color: white;
+    background: red;
+}
+table span.action--edit:hover {
+    color: white;
+    background: skyblue;
+}
+table span.action--save:hover{
+    color: white;
+    background: #10a023
 }

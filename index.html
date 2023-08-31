@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>&hearts;</title>
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 
@@ -28,17 +28,15 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="3">
-                        <span onclick="handleClear()">Clear Inventory</span>
-                    </td>
-                    <td colspan="3">
-                        <span onclick="handleAdd()">Add New Book</span>
+                    <td colspan="6">
+                        <span class="action--delete" style="display: inline-block; width: calc(50% - .5rem);" onclick="handleClear()">Clear Inventory</span>
+                        <span class="action--edit" style="display: inline-block; width: calc(50% - .5rem);" onclick="handleAdd()">Add New Book</span>
                     </td>
                 </tr>
                 <tr id="book-add" style="display: none;">
                     <form action="#" name="book-add-form" id="book-add-form">
-                        <td></td>
-                        <td>
+
+                        <td colspan="2">
                             <input type="text" name="book-add-title" placeholder="Book Title">
                         </td>
                         <td>
@@ -48,11 +46,11 @@
                             <textarea cols="30" rows="1" name="book-add-desc" placeholder="Book Description"></textarea>
                         </td>
                         <td>
-                            <input type="number" name="book-0-number" value="1">
+                            <input type="number" name="book-0-number" value="1" placeholder="Book Count">
                         </td>
                         <td>
-                            <span onclick="handleAddSave()">Save</span>
-                            <span onclick="handleAddCancel()">Cancel</span>
+                            <span class="action--save" onclick="handleAddSave()">Save</span>
+                            <span class="action--cancel" onclick="handleAddCancel()">Cancel</span>
                         </td>
                     </form>
                 </tr>
@@ -60,7 +58,7 @@
         </table>
     </section>
     <footer>
-        <span>&copy;</span>
+        <span>made with &hearts;</span>
     </footer>
 
     <script src="./assets/script.js"></script>
