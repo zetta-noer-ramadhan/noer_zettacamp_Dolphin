@@ -24,7 +24,9 @@ const BookModel = {
         state.inventory.push(new Book(title, author, description, count))
         storage.update('inventory', state.inventory)
     },
-    readBooks: () => state.inventory,
+    readBooks: () => {
+        state.inventory = storage.read('inventory')
+    },
     readBook: (id) => state.inventory.filter(book => book.id === id),
     updateBook: (id, title, author, description, count) => {
         state.inventory = state.inventory.map(book => {
@@ -47,7 +49,44 @@ const BookModel = {
     }
 }
 
+const PrepareTableItem = (id, title, author, description, count) => {
+    const row = document.createElement("tr")
+    row.id = 'book-' + id
 
+    row.innerHTML = `<form action="#" name="book-${id}-form" id="book-${id}-form">
+        <td>${id}</td>
+        <td>
+            <input type="text" name="book-${id}-title" value="${title}" disabled>
+        </td>
+        <td>
+            <input type="text" name="book-${id}-author" value="${author}" disabled>
+        </td>
+        <td>
+            <textarea cols="30" rows="1" name="book-${id}-desc" disabled>${description}</textarea>
+        </td>
+        <td>
+            <input type="number" name="book-${id}-number" value="${count}" disabled>
+        </td>
+        <td>
+            <ul>
+                <li class='action--edit'>
+                    <span onclick="handleEdit(${id})">Edit</span>
+                </li>
+                <li class='action--save hide'>
+                    <span onclick="handleSave(${id})">Save</span>
+                </li>
+                <li class='action--cancel hide'>
+                    <span onclick="handleCancel(${id})">Cancel</span>
+                </li>
+                <li class='action--delete'>
+                    <span onclick="handleDelete(${id})">Delete</span>
+                </li>
+            </ul>
+        </td>
+    </form>`
+
+    return row
+}
 const handleEdit = (id) => {
     const bookRow = document.getElementById('book-' + id)
     const input = bookRow.querySelectorAll('input')
@@ -116,6 +155,7 @@ const handleDelete = (id) => {
     const deleteConfirmation = confirm(`Are you sure to delete ${title}?`)
     if(deleteConfirmation){
         BookModel.deleteBook(id)
+        RefreshTable()
     }
 }
 const handleAdd = () => {
@@ -148,84 +188,52 @@ const handleClear = () => {
     const clearConfirmation = confirm(`Are you sure to clear the inventory?`)
     if (clearConfirmation){
         storage.clear()
+        BookModel.readBooks()
         RefreshTable()
     }
+
 }
 
 
 const RefreshRow = (id) => {
 
-    console.log('refresh now!')
-
     const bookRow = document.getElementById('book-' + id)
     const input = bookRow.querySelectorAll('input')
 
-    const currentBook = BookModel.readBook(id)
-    console.log(currentBook)
-
+    const currentBook = BookModel.readBook(id)[0]
+    // console.log(currentBook)
 
     Array.from(input).forEach(item => {
-        if(item.name == 'book-' + id + -'title') item.value = currentBook.title
-        if (item.name == 'book-' + id + -'author') item.value = currentBook.title
-        if (item.name == 'book-' + id + -'number') item.value = currentBook.count
+        console.log(id, item.name, item.value)
+        if (item.name == 'book-' + id + '-title') item.value = currentBook.title
+        if (item.name == 'book-' + id + '-author') item.value = currentBook.title
+        if (item.name == 'book-' + id + '-number') item.value = currentBook.count
     })
 
     const textarea = bookRow.querySelector('textarea')
-    textarea.value = currentBook[0].description
+    textarea.value = currentBook.description
 }
 const RefreshTable = () => {
     const table = document.getElementById('book__table__body')
-    Array.from(table.children).forEach(item => {
-        table.removeChild(item)
+    Array.from(table.children).map((item) => {
+        item.remove()
     })
 
-    Array.from(state.inventory).forEach(({ id, title, author, description, count }) => {
-        table.appendChild(PrepareTableItem(id, title, author, description, count))
-    })
-}
-const PrepareTableItem = (id, title, author, description, count) => {
-    const row = document.createElement("tr")
-    row.id = 'book-' + id
 
-    row.innerHTML = `<form action="#" name="book-${id}-form" id="book-${id}-form">
-        <td>${id}</td>
-        <td>
-            <input type="text" name="book-${id}-title" value="${title}" disabled>
-        </td>
-        <td>
-            <input type="text" name="book-${id}-author" value="${author}" disabled>
-        </td>
-        <td>
-            <textarea cols="30" rows="1" name="book-${id}-desc" disabled>${description}</textarea>
-        </td>
-        <td>
-            <input type="number" name="book-${id}-number" value="${count}" disabled>
-        </td>
-        <td>
-            <ul>
-                <li class='action--edit'>
-                    <span onclick="handleEdit(${id})">Edit</span>
-                </li>
-                <li class='action--save hide'>
-                    <span onclick="handleSave(${id})">Save</span>
-                </li>
-                <li class='action--cancel hide'>
-                    <span onclick="handleCancel(${id})">Cancel</span>
-                </li>
-                <li class='action--delete'>
-                    <span onclick="handleDelete(${id})">Delete</span>
-                </li>
-            </ul>
-        </td>
-    </form>`
+    if(state.inventory){
+        Array.from(state.inventory).forEach(({ id, title, author, description, count }) => {
+            table.appendChild(PrepareTableItem(id, title, author, description, count))
+        })
+    }
 
-    return row
+
 }
+
 
 const main = () => {
 
     if (storage.read('inventory')) {
-        state.inventory = storage.read('inventory')
+        BookModel.readBooks()
     } else {
         storage.create('inventory', [])
     }

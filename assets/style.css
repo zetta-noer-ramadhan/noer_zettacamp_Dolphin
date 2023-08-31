@@ -24,6 +24,9 @@ footer {
 header {
     padding: 3rem 0;
 }
+footer {
+    padding: 1rem 0;
+}
 .books {
     flex: 1;
 }
@@ -44,6 +47,14 @@ table tbody ul li span,
 table tfoot ul li span,
 table tfoot tr span {
     cursor: pointer;
+}
+tbody {
+    border-bottom: 1px lightgray solid;
+}
+tbody tr td,
+tbody tr td input,
+tbody tr td textarea {
+    text-align: center;
 }
 thead {
     border-bottom: 1px lightgray solid;
