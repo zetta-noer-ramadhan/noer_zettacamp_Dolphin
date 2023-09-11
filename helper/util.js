@@ -5,6 +5,11 @@ const CheckType = (data, type) => {
     return true
 }
 
+const ObjectFilterByProperty = (object, arrayOfProperties) => arrayOfProperties.reduce((result, currentKey) => {
+    const { [currentKey]: value } = object
+    return { ...result, [currentKey]: value }
+}, {})
+
 const ErrorHandler = (err, req, res, next) => {
     return res.status(err.statusCode).json({
         message: err.type,
@@ -22,5 +27,6 @@ const RouteErrorHandler = (req, res, next) => {
 module.exports = {
     CheckType,
     ErrorHandler,
-    RouteErrorHandler
+    RouteErrorHandler,
+    ObjectFilterByProperty
 }

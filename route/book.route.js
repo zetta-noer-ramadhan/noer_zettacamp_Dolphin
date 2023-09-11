@@ -3,7 +3,6 @@ const middleware = require('../middleware/auth.middleware')
 const service = require('../service/book.service')
 
 router.post('/bookPurchase', middleware, async (req, res) => {
-
     const [status, data] = await service.BookPurchase(req, res)
     return res.status(status).json(data)
 })

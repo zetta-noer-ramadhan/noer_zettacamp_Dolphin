@@ -1,4 +1,4 @@
-const { CheckType, ResponseHelper } = require('../helper/util')
+const { CheckType, ObjectFilterByProperty } = require('../helper/util')
 
 const BookPurchase = async (req, res) => {
 
@@ -11,10 +11,6 @@ const BookPurchase = async (req, res) => {
         "creditDuration"
     ]
 
-    const parameterNameAdditional = [
-        "additionalTerm"
-    ]
-
     const parameterType = {
         book: "object",
         taxPercentage: "number",
@@ -24,41 +20,19 @@ const BookPurchase = async (req, res) => {
         creditDuration: "number"
     }
 
-    const parameterTypeAdditional = {
-        additionalTerm: "object"
-    }
+    const mainParameter = ObjectFilterByProperty(req.body, parameterName)
+    const isKeyNotExist = Object.keys(mainParameter).length < parameterName.length
 
-    const isKeyNotExist = parameterName.filter(name => Object.keys(req.body).includes(name)).length < parameterName.length
+    if (isKeyNotExist) return [400, {
+        message: 'Wrong Parameter Format',
+        detail: 'missing parameter(s)'
+    }]
 
-    if (isKeyNotExist) {
-        return [400, {
-            message: 'Wrong Parameter Format',
-            detail: 'missing parameter(s)'
-        }]
-    }
+    if (!CheckType(mainParameter, parameterType)) return [400, {
+        message: 'Wrong Parameter Format',
+        detail: 'wrong parameter(s) data type'
+    }]
 
-
-    const filterAdditionalParameter = Object.entries(req.body).filter(([key, _]) => !parameterNameAdditional.includes(key))
-    const mainParameter = Object.fromEntries(filterAdditionalParameter)
-    const additionalParameter = Object.fromEntries(Object.entries(req.body).filter(([key, _]) => parameterNameAdditional.includes(key)))
-
-    if (!CheckType(mainParameter, parameterType)) {
-        return [400, {
-            message: 'Wrong Parameter Format',
-            detail: 'wrong parameter(s) data type'
-        }]
-    }
-
-    const isAdditionalTermNotExist = parameterNameAdditional.filter(name => Object.keys(req.body).includes(name)).length < parameterNameAdditional.length
-
-    if (!isAdditionalTermNotExist) {
-        if (!CheckType(additionalParameter, parameterTypeAdditional)) {
-            return [400, {
-                message: 'Wrong Parameter Format',
-                detail: 'wrong additional parameter(s) data type'
-            }]
-        }
-    }
 
 
 
@@ -72,58 +46,10 @@ const BookPurchase = async (req, res) => {
         additionalTerm
     } = req.body
 
-    if (!book) {
-        return [400, {
-            message: 'Wrong Parameter Format',
-            detail: 'no book'
-        }]
-    }
-
-
-    const additionalTermName = [
-        "term",
-        "amount"
-    ]
-
-    const additionalTermType = {
-        term: "number",
-        amount: "number"
-    }
-
-    if (additionalTerm) {
-        const isAdditionalTermKeyNotExist = additionalTermName.filter(name => Object.keys(additionalTerm).includes(name)).length < additionalTermName.length
-
-        if (isAdditionalTermKeyNotExist) {
-            return [400, {
-                message: 'Wrong Parameter Format',
-                detail: 'missing additional term properties'
-            }]
-        }
-
-        if (!CheckType(additionalTerm, additionalTermType)) {
-            return [400, {
-                message: 'Wrong Parameter Format',
-                detail: 'wrong additional term properties data type'
-            }]
-        }
-
-        if(additionalTerm.term === 0){
-            return [400, {
-                message: 'Wrong Parameter Format',
-                detail: 'additional term cannot be zero'
-            }]
-        }
-        if(additionalTerm.term > creditDuration){
-            return [400, {
-                message: 'Wrong Parameter Format',
-                detail: 'additional term cannot be greater than credit duration'
-            }]
-        }
-
-    }
-
-
-
+    if (!book) return [400, {
+        message: 'Wrong Parameter Format',
+        detail: 'no book'
+    }]
 
     const parameterBookName = [
         "title",
@@ -139,66 +65,102 @@ const BookPurchase = async (req, res) => {
         on_sale: "boolean"
     }
 
-    const isBookKeyNotExist = parameterBookName.filter(name => Object.keys(book).includes(name)).length < parameterBookName.length
+    const isBookKeyNotExist = parameterBookName.filter(name => name in book).length < parameterBookName.length
 
-    if (isBookKeyNotExist) {
-        return [400, {
+    if (isBookKeyNotExist) return [400, {
+        message: 'Wrong Parameter Format',
+        detail: 'missing book properties'
+    }]
+
+    if (!CheckType(book, parameterBookType)) return [400, {
+        message: 'Wrong Parameter Format',
+        detail: 'wrong book properties data type'
+    }]
+
+    if (book.title === '' || book.author === '' || book.price === 0) return [400, {
+        message: 'Wrong Parameter Format',
+        detail: 'book properties cannot be zero'
+    }]
+
+    if (taxPercentage === 0) return [400, {
+        message: 'Wrong Parameter Format',
+        detail: 'tax percentage cannot be zero'
+    }]
+
+    if (bookPurchased === 0) return [200, {
+        message: 'No Purchase',
+        detail: 'What are you doing?'
+    }]
+
+    if (bookStock < bookPurchased) return [200, {
+        message: 'Not Enough Book Stock',
+        detail: `Sorry for the inconvenience. We don't have enough ${book.title} :(`
+    }]
+
+    if (bookStock === 0) return [200, {
+        message: 'Out of Book Stock',
+        detail: `Sorry for the inconvenience. We don't have any ${book.title} :(`
+    }]
+
+
+
+    const parameterNameAdditional = [
+        "additionalTerm"
+    ]
+
+    const parameterTypeAdditional = {
+        additionalTerm: "object"
+    }
+
+    const additionalParameter = ObjectFilterByProperty(req.body, parameterNameAdditional)
+    const isAdditionalTermNotExist = Object.keys(additionalParameter).length < parameterNameAdditional.length
+
+    if (!isAdditionalTermNotExist && !CheckType(additionalParameter, parameterTypeAdditional)) return [400, {
+        message: 'Wrong Parameter Format',
+        detail: 'wrong additional parameter(s) data type'
+    }]
+
+
+
+
+    if (additionalTerm) {
+
+        const additionalTermName = [
+            "term",
+            "amount"
+        ]
+
+        const additionalTermType = {
+            term: "number",
+            amount: "number"
+        }
+
+        const isAdditionalTermKeyNotExist = additionalTermName.filter(name => name in additionalTerm).length < additionalTermName.length
+
+        if (isAdditionalTermKeyNotExist) return [400, {
             message: 'Wrong Parameter Format',
-            detail: 'missing book properties'
+            detail: 'missing additional term properties'
         }]
-    }
 
-    if (!CheckType(book, parameterBookType)) {
-        return [400, {
+        if (!CheckType(additionalTerm, additionalTermType)) return [400, {
             message: 'Wrong Parameter Format',
-            detail: 'wrong book properties data type'
+            detail: 'wrong additional term properties data type'
         }]
-    }
 
-
-
-
-    if (book.title === '' || book.author === '' || book.price === 0) {
-        return [400, {
+        if (additionalTerm.term === 0) return [400, {
             message: 'Wrong Parameter Format',
-            detail: 'book properties cannot be zero'
+            detail: 'additional term cannot be zero'
         }]
-    }
 
-    if (taxPercentage === 0) {
-        return [400, {
+        if (additionalTerm.term > creditDuration) return [400, {
             message: 'Wrong Parameter Format',
-            detail: 'tax percentage cannot be zero'
-        }]
-    }
-
-    if (bookPurchased === 0) {
-        return [200, {
-            message: 'No Purchase',
-            detail: 'What are you doing?'
+            detail: 'additional term cannot be greater than credit duration'
         }]
     }
 
 
 
 
-    if (bookStock < bookPurchased) {
-        return [200, {
-            message: 'Not Enough Book Stock',
-            detail: `Sorry for the inconvenience. We don't have enough ${book.title} :(`
-        }]
-    }
-
-    if (bookStock === 0) {
-        return [200, {
-            message: 'Out of Book Stock',
-            detail: `Sorry for the inconvenience. We don't have any ${book.title} :(`
-        }]
-    }
-
-
-
-    const date = new Date()
     const taxRate = taxPercentage / 100
     const taxAmount = book.price * taxRate
     const priceAfterTax = book.price + taxAmount
@@ -211,7 +173,7 @@ const BookPurchase = async (req, res) => {
             status: bookStock - bookPurchased > 0 ? "Book still can be purchased" : "Book cannot be purchased again"
         },
         detail: {
-            date: date.toLocaleString('default', { day: '2-digit', month: 'short', year: 'numeric' }),
+            date: new Date().toLocaleString('default', { day: '2-digit', month: 'short', year: 'numeric' }),
             cashier: "Noer",
             customer: req.user.username,
             tax_percentage: taxPercentage,
@@ -243,6 +205,9 @@ const BookPurchase = async (req, res) => {
 
     receipt.detail.credit_detail = await CalculateTerm(receipt.detail.price_total, creditDuration, additionalTerm)
 
+
+
+
     return [200, {
         message: 'Book Purchased Successfully',
         receipt
@@ -259,6 +224,7 @@ const CalculateTerm = async (price, duration, additional) => {
     const indexOfCurrentMonth = date.getMonth()
 
     return new Array(duration).fill(0).map((_, index) => {
+
         const currentIndexOfMonth = (indexOfCurrentMonth + 1 + index) % 12
         if (currentIndexOfMonth === 0) currentYear++
 
