@@ -115,10 +115,13 @@ const BookPurchase = async (req) => {
     const additionalParameter = ObjectFilterByProperty(req.body, parameterNameAdditional)
     const isAdditionalTermNotExist = Object.keys(additionalParameter).length < parameterNameAdditional.length
 
-    if (!isAdditionalTermNotExist && !CheckType(additionalParameter, parameterTypeAdditional)) return [400, {
-        message: 'Wrong Parameter Format',
-        detail: 'wrong additional parameter(s) data type'
-    }]
+    if (!isAdditionalTermNotExist){
+        if (!CheckType(additionalParameter, parameterTypeAdditional)) return [400, {
+            message: 'Wrong Parameter Format',
+            detail: 'wrong additional parameter(s) data type'
+        }]
+    }
+
 
 
 
@@ -155,6 +158,11 @@ const BookPurchase = async (req) => {
         if (additionalTerm.term > creditDuration) return [400, {
             message: 'Wrong Parameter Format',
             detail: 'additional term cannot be greater than credit duration'
+        }]
+
+        if (additionalTerm.amount < 1) return [400, {
+            message: 'Wrong Parameter Format',
+            detail: 'additional amount cannot be zero or less'
         }]
     }
 
@@ -203,7 +211,7 @@ const BookPurchase = async (req) => {
         }
     }
 
-    receipt.detail.credit_detail = await CalculateTerm(receipt.detail.price_total, creditDuration, additionalTerm)
+    receipt.detail.credit_detail = CalculateTerm(receipt.detail.price_total, creditDuration, additionalTerm)
 
 
 
@@ -214,7 +222,7 @@ const BookPurchase = async (req) => {
     }]
 }
 
-const CalculateTerm = async (price, duration, additional) => {
+const CalculateTerm = (price, duration, additional) => {
 
     if (duration === 0) return []
 
@@ -227,30 +235,33 @@ const CalculateTerm = async (price, duration, additional) => {
         startMonth: date.getMonth()
     }
 
-    return new Array(duration).fill(0).map((_, index) => {
+    return new Array(duration)
+        .fill(0)
+        .map((_, index) => {
 
-        const monthlyAmount = price / duration
-        const currentMonthIndex = (dateConfig.startMonth + 1 + index) % 12
+            const monthlyAmount = price / duration
+            const currentMonthIndex = (dateConfig.startMonth + 1 + index) % 12
 
-        if (currentMonthIndex === 0) dateConfig.currentYear++
+            if (currentMonthIndex === 0) dateConfig.currentYear++
 
-        dateConfig.currentMonth = new Date(dateConfig.currentYear, currentMonthIndex, dateConfig.dueDate).toLocaleString('default', { month: 'short' })
+            dateConfig.currentMonth = new Date(dateConfig.currentYear, currentMonthIndex, dateConfig.dueDate).toLocaleString('default', { month: 'short' })
 
-        let creditDetail = {
-            payment_due_date: [dateConfig.dueDate, dateConfig.currentMonth, dateConfig.currentYear].join(' '),
-            payment_amount: monthlyAmount,
-        }
-
-        if (additional?.term === index + 1) {
-            creditDetail = {
-                ...creditDetail,
-                payment_amount: monthlyAmount + additional.amount,
-                payment_additional: additional.amount
+            let creditDetail = {
+                payment_due_date: [dateConfig.dueDate, dateConfig.currentMonth, dateConfig.currentYear].join(' '),
+                payment_amount: monthlyAmount,
             }
-        }
 
-        return creditDetail
-    })
+            if (additional?.term === index + 1) {
+                creditDetail = {
+                    ...creditDetail,
+                    payment_amount: monthlyAmount + additional.amount,
+                    payment_additional: additional.amount
+                }
+            }
+
+            return creditDetail
+        })
+        .filter(item => item.payment_amount !== 0)
 }
 
 module.exports = {

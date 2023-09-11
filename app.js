@@ -12,5 +12,5 @@ app.use(RouteErrorHandler)
 app.use(ErrorHandler)
 
 app.listen(port, () => {
-    console.log(`listenting on ${port}`)
+    console.log(`listening on ${port}`)
 })

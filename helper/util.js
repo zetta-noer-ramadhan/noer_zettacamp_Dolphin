@@ -2,7 +2,7 @@ const CheckType = (data, type) => Object.entries(data).filter(([key]) => typeof 
 
 const ObjectFilterByProperty = (object, arrayOfProperties) => arrayOfProperties.reduce((result, currentKey) => {
     const { [currentKey]: value } = object
-    return { ...result, [currentKey]: value }
+    return !value ? {} : { ...result, [currentKey]: value }
 }, {})
 
 const ErrorHandler = (err, req, res, next) => res.status(err.statusCode).json({
