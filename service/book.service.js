@@ -1,6 +1,6 @@
 const { CheckType, ObjectFilterByProperty } = require('../helper/util')
 
-const BookPurchase = async (req, res) => {
+const BookPurchase = async (req) => {
 
     const parameterName = [
         "book",
@@ -219,21 +219,25 @@ const CalculateTerm = async (price, duration, additional) => {
     if (duration === 0) return []
 
     const date = new Date()
-    const dueDate = 25
-    let currentYear = date.getFullYear()
-    const indexOfCurrentMonth = date.getMonth()
+
+    const dateConfig = {
+        dueDate: 25,
+        currentYear: date.getFullYear(),
+        currentMonth: date.getMonth(),
+        startMonth: date.getMonth()
+    }
 
     return new Array(duration).fill(0).map((_, index) => {
 
-        const currentIndexOfMonth = (indexOfCurrentMonth + 1 + index) % 12
-        if (currentIndexOfMonth === 0) currentYear++
-
-        const currentMonth = new Date(currentYear, currentIndexOfMonth, dueDate).toLocaleString('default', { month: 'short' })
-
         const monthlyAmount = price / duration
+        const currentMonthIndex = (dateConfig.startMonth + 1 + index) % 12
+
+        if (currentMonthIndex === 0) dateConfig.currentYear++
+
+        dateConfig.currentMonth = new Date(dateConfig.currentYear, currentMonthIndex, dateConfig.dueDate).toLocaleString('default', { month: 'short' })
 
         let creditDetail = {
-            payment_due_date: [dueDate, currentMonth, currentYear,].join(' '),
+            payment_due_date: [dateConfig.dueDate, dateConfig.currentMonth, dateConfig.currentYear].join(' '),
             payment_amount: monthlyAmount,
         }
 

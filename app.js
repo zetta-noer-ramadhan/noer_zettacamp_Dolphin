@@ -7,13 +7,9 @@ const BookPurchaseRoute = require('./route/book.route')
 
 app.use(express.json())
 
-app.use(ErrorHandler)
-
 app.use(BookPurchaseRoute)
-
-app.get('/', (req, res) => res.status(200).send('hello world!'))
-
 app.use(RouteErrorHandler)
+app.use(ErrorHandler)
 
 app.listen(port, () => {
     console.log(`listenting on ${port}`)
