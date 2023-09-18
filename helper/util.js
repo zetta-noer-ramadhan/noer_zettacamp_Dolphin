@@ -15,9 +15,15 @@ const RouteErrorHandler = (req, res, next) => res.status(404).json({
     detail: req.path + ' not found'
 })
 
+const errorHelper = (status, err) => [status, {
+    message: err.message,
+    detail: err
+}]
+
 module.exports = {
     CheckType,
     ErrorHandler,
     RouteErrorHandler,
-    ObjectFilterByProperty
+    ObjectFilterByProperty,
+    errorHelper
 }
