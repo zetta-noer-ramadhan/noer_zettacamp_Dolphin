@@ -5,7 +5,8 @@ const port = 3000
 const mongoose = require('mongoose')
 
 const { ErrorHandler, RouteErrorHandler } = require('./helper/util')
-const BookPurchaseRoute = require('./route/book.route')
+
+const BookRoute = require('./route/book.route')
 
 const config = {
     protocol: 'mongodb',
@@ -19,6 +20,7 @@ const DB_URI = `${config.protocol}://${config.hostname}:${config.port}/${config.
 mongoose.connect(DB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false
 }).then(() => {
     console.log('connected to database')
 }).catch((err) => {
@@ -27,7 +29,8 @@ mongoose.connect(DB_URI, {
 
 app.use(express.json())
 
-app.use(BookPurchaseRoute)
+app.use(BookRoute)
+
 app.use(RouteErrorHandler)
 app.use(ErrorHandler)
 

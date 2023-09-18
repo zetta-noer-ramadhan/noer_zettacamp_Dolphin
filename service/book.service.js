@@ -2,45 +2,61 @@ const mongoose = require('mongoose')
 const authorModel = require('../model/author.model')
 const bookModel = require('../model/book.model')
 
-const { errorHelper } = require('../helper/util')
-
 const books = {}
 
 books.createOne = async (bookData) => { // OK
 
-    const authorDataRead = await authorModel.findOne({ name: bookData.author })
+    const authorDataRead = await authorModel
+        .findOne({ name: bookData.author })
+        .catch(err => errorHelper(500, err))
+        .then(data => data)
+
+    if (authorDataRead?.err) return [authorDataRead.status, authorDataRead.err]
+
+
     const authorData = authorDataRead || await authorModel
         .create({ name: bookData.author })
         .catch(err => errorHelper(500, err))
         .then(data => data)
+
+    if (authorData?.err) return [authorData.status, authorData.err]
+
 
     const bookCreated = await bookModel
         .create({ ...bookData, author: authorData._id })
         .catch(err => errorHelper(500, err))
         .then(data => data)
 
-    authorData.books.push(bookCreated._id)
-    await authorData.save()
+    if (bookCreated?.err) return [bookCreated.status, bookCreated.err]
 
-    return [200, {
+
+    authorData.books.push(bookCreated._id)
+    const savingData = await authorData.save().catch(err => errorHelper(500, err))
+
+    if (savingData?.err) return [savingData.status, savingData.err]
+
+
+    return [201, {
         message: 'book added',
         detail: {
-            authorData,
-            bookCreated
+            bookCreated,
+            authorData
         }
     }]
 }
 
+
 books.readOne = async (id) => { // OK
 
     const isValidID = mongoose.Types.ObjectId.isValid(id)
-    if (!isValidID) return errorHelper(400, { message: 'invalid ID' })
+    if (!isValidID) return [400, { message: 'invalid ID' }]
 
     const bookId = mongoose.Types.ObjectId(id)
 
     const bookRead = await bookModel
         .findById(bookId)
         .populate('author', 'name')
+        .select('-__v')
         .catch(err => errorHelper(500, err))
         .then(data => data)
 
@@ -49,17 +65,21 @@ books.readOne = async (id) => { // OK
         detail: 'book not found'
     }]
 
+    if (bookRead?.err) return [bookRead.status, bookRead.err]
+
     return [200, {
         message: 'book fetched',
         detail: bookRead
     }]
 }
 
+
 books.readAll = async () => { // OK
 
     const booksRead = await bookModel
         .find()
         .populate('author', 'name')
+        .select('-__v')
         .catch(err => errorHelper(500, err))
         .then(data => data)
 
@@ -68,28 +88,42 @@ books.readAll = async () => { // OK
         detail: 'empty library'
     }]
 
+    if (booksRead?.err) return [booksRead.status, booksRead.err]
+
     return [200, {
         message: 'books fetched',
         detail: booksRead
     }]
 }
 
+
 books.updateOne = async (id, bookData) => { // OK
 
     const isValidID = mongoose.Types.ObjectId.isValid(id)
-    if (!isValidID) return errorHelper({ message: 'invalid ID' })
+    if (!isValidID) return [400, { message: 'invalid ID' }]
 
-    const authorDataRead = await authorModel.findOne({ name: bookData.author })
+    const authorDataRead = await authorModel
+        .findOne({ name: bookData.author })
+        .catch(err => errorHelper(500, err))
+        .then(data => data)
+
+    if (authorDataRead?.err) return [authorDataRead.status, authorDataRead.err]
+
+
     const authorData = authorDataRead || await authorModel
         .create({ name: bookData.author })
         .catch(err => errorHelper(500, err))
         .then(data => data)
 
+    if (authorData?.err) return [authorData.status, authorData.err]
+
+
     const bookId = mongoose.Types.ObjectId(id)
 
     const bookUpdated = await bookModel
-        .findByIdAndUpdate(bookId, { ...bookData, author: authorData._id })
+        .findByIdAndUpdate(bookId, { ...bookData, author: authorData._id }, { new: true })
         .populate('author', 'name')
+        .select('-__v')
         .catch(err => errorHelper(500, err))
         .then(data => data)
 
@@ -98,16 +132,19 @@ books.updateOne = async (id, bookData) => { // OK
         detail: 'book not found'
     }]
 
+    if (bookUpdated?.err) return [bookUpdated.status, bookUpdated.err]
+
     return [200, {
         message: 'book updated',
         detail: bookUpdated
     }]
 }
 
+
 books.deleteOne = async (id) => { // OK
 
     const isValidID = mongoose.Types.ObjectId.isValid(id)
-    if (!isValidID) return errorHelper({ message: 'invalid ID' })
+    if (!isValidID) return [400, { message: 'invalid ID' }]
 
     const bookId = mongoose.Types.ObjectId(id)
 
@@ -121,11 +158,14 @@ books.deleteOne = async (id) => { // OK
         detail: 'book not found'
     }]
 
+    if (bookDeleted?.err) return [bookDeleted.status, bookDeleted.err]
+
     return [200, {
         message: 'book deleted',
         detail: bookDeleted
     }]
 }
+
 
 books.deleteAll = async () => { // OK
 
@@ -134,10 +174,16 @@ books.deleteAll = async () => { // OK
         .catch(err => errorHelper(500, err))
         .then(data => data)
 
+    if (booksDeleted?.err) return [booksDeleted.status, booksDeleted.err]
+
+
     const authorsDeleted = await authorModel
         .deleteMany()
         .catch(err => errorHelper(500, err))
         .then(data => data)
+
+    if (authorsDeleted?.err) return [authorsDeleted.status, authorsDeleted.err]
+
 
     return [200, {
         message: 'books and authors deleted',
@@ -146,6 +192,14 @@ books.deleteAll = async () => { // OK
             authorsDeleted
         }
     }]
+}
+
+
+const errorHelper = (status, err) => {
+    return {
+        status,
+        err
+    }
 }
 
 module.exports = books

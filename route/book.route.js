@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const middleware = require('../middleware/auth.middleware')
 const purchaseService = require('../service/purchase.service')
-const bookService = require('../service/book.service')
 
 router.post('/bookPurchase', middleware, async (req, res) => {
     const [status, data] = await purchaseService(req)
@@ -9,6 +8,9 @@ router.post('/bookPurchase', middleware, async (req, res) => {
 })
 
 
+
+
+const bookService = require('../service/book.service')
 
 router.post('/books', middleware, async (req, res) => {
     const [status, data] = await bookService.createOne(req.body)
@@ -39,5 +41,8 @@ router.delete('/books/:id', middleware, async (req, res) => {
     const [status, data] = await bookService.deleteOne(req.params.id)
     return res.status(status).json(data)
 })
+
+
+
 
 module.exports = router
