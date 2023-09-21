@@ -440,6 +440,12 @@ bookshelves.distinct = async (bookshelfId) => {
 
 
 
+
+
+
+
+
+
 bookshelves.unwind = async (bookshelfId) => {
 
     const isValidId = mongoose.Types.ObjectId.isValid(bookshelfId)
@@ -449,54 +455,69 @@ bookshelves.unwind = async (bookshelfId) => {
 
     const unwindedData = await bookshelfModel
         .aggregate([
-            {
-                $match: {
-                    _id: validBookshelfId
-                }
-            },
+            { $match: { _id: validBookshelfId } },
+            { $unwind: { path: "$books" } },
+            // {
+            //     $lookup: {
+            //         from: "books",
+            //         localField: "books",
+            //         foreignField: "_id",
+            //         as: "book"
+            //     }
+            // },
+            // {
+            //     $lookup: {
+            //         from: "authors",
+            //         localField: "book.author",
+            //         foreignField: "_id",
+            //         as: "book.author"
+            //     }
+            // },
             {
                 $lookup: {
                     from: "books",
-                    localField: "books",
-                    foreignField: "_id",
+                    let: { currentBookId: "$books" },
+                    pipeline: [
+                        { $match: { $expr: { $eq: ["$_id", "$$currentBookId"] } } },
+                        {
+                            $lookup: {
+                                from: "authors",
+                                let: { currentAuthorId: "$author" },
+                                pipeline: [{ $match: { $expr: { $eq: ["$_id", "$$currentAuthorId"] } } }],
+                                as: "authorData"
+                            }
+                        }
+                    ],
                     as: "book"
-                }
-            },
-            {
-                $unwind: {
-                    path: "$book"
-                }
-            },
-            {
-                $lookup: {
-                    from: "authors",
-                    localField: "book.author",
-                    foreignField: "_id",
-                    as: "book.authors"
                 }
             },
             {
                 $addFields: {
                     bookshelfLocation: "$name",
                     bookData: "$book",
-
                 }
             },
+
             {
                 $project: {
                     _id: 0,
-                    bookshelfLocation: 1,
+                    __v: 0,
+                    name: 0,
+                    officer: 0,
+                    genres: 0,
+                    book: 0,
                     bookData: {
-                        title: 1,
-                        author: {
-                            $arrayElemAt: ["$book.authors.name", 0]
-                        },
-                        genre: 1,
-                        price: 1,
-
+                        __v: 0,
+                        genre: 0,
+                        price: 0,
+                        on_sale: 0,
+                        authorData: {
+                            __v: 0,
+                            books: 0
+                        }
                     }
                 }
-            }
+            },
         ])
         .catch(err => ({ status: 500, err }))
         .then(data => data)

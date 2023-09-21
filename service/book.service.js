@@ -196,14 +196,20 @@ books.deleteAll = async () => { // OK
 
 
 
+
+
+
+
+
+
 books.projection = async (fields) => {
 
     const fieldData = Object.entries(fields).map(([_, value]) => ([value, 1]))
-    const FieldDataObject = Object.fromEntries(fieldData)
+    const fieldDataObject = Object.fromEntries(fieldData)
 
     const projectedData = await bookModel
         .aggregate([
-            { $project: FieldDataObject },
+            { $project: fieldDataObject },
             { $project: { __v: 0 } }
         ])
         .catch(err => ({ status: 500, err }))
@@ -213,6 +219,9 @@ books.projection = async (fields) => {
 
     return [200, projectedData]
 }
+
+
+
 
 books.addFields = async (bookId) => {
 
@@ -238,7 +247,7 @@ books.addFields = async (bookId) => {
                     authorName: {
                         $arrayElemAt: ['$author.name', 0]
                     }
-                }
+                },
             },
             {
                 $project: {
