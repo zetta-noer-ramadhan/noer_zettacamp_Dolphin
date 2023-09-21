@@ -198,6 +198,7 @@ bookshelves.get = async (bookshelfId) => {
         detail: 'bookshelf not found'
     }]
 
+    return [200, bookshelfData]
     return [200, {
         message: 'bookshelf fetched',
         detail: bookshelfData
@@ -457,22 +458,6 @@ bookshelves.unwind = async (bookshelfId) => {
         .aggregate([
             { $match: { _id: validBookshelfId } },
             { $unwind: { path: "$books" } },
-            // {
-            //     $lookup: {
-            //         from: "books",
-            //         localField: "books",
-            //         foreignField: "_id",
-            //         as: "book"
-            //     }
-            // },
-            // {
-            //     $lookup: {
-            //         from: "authors",
-            //         localField: "book.author",
-            //         foreignField: "_id",
-            //         as: "book.author"
-            //     }
-            // },
             {
                 $lookup: {
                     from: "books",
@@ -497,7 +482,6 @@ bookshelves.unwind = async (bookshelfId) => {
                     bookData: "$book",
                 }
             },
-
             {
                 $project: {
                     _id: 0,

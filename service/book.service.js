@@ -90,6 +90,7 @@ books.readAll = async () => { // OK
 
     if (booksRead?.err) return [booksRead.status, booksRead.err]
 
+    return [200, booksRead]
     return [200, {
         message: 'books fetched',
         detail: booksRead
@@ -204,13 +205,25 @@ books.deleteAll = async () => { // OK
 
 books.projection = async (fields) => {
 
-    const fieldData = Object.entries(fields).map(([_, value]) => ([value, 1]))
+    const fieldData = fields
+        ? Object.entries(fields).map(([_, value]) => ([value, 1]))
+        : [["x", 0]]
+
     const fieldDataObject = Object.fromEntries(fieldData)
 
     const projectedData = await bookModel
         .aggregate([
-            { $project: fieldDataObject },
-            { $project: { __v: 0 } }
+            {
+                $project: {
+                    ...fieldDataObject,
+                    newField: 'wow!',
+                    price: {
+                        $add: [12, 10]
+                    },
+                    year: 1
+                }
+            },
+            { $project: { __v: 0 } },
         ])
         .catch(err => ({ status: 500, err }))
         .then(data => data)
@@ -223,7 +236,55 @@ books.projection = async (fields) => {
 
 
 
-books.addFields = async (bookId) => {
+books.addFields = async () => {
+
+    const addedData = await bookModel
+        .aggregate([
+            {
+                $lookup: {
+                    from: "authors",
+                    localField: "author",
+                    foreignField: "_id",
+                    as: "author"
+                }
+            },
+            {
+                $addFields: {
+                    priceValue: {
+                        $cond: {
+                            if: {
+                                $gt: ['$price', 50000]
+                            },
+                            then: "Expensive",
+                            else: "Inexpensive"
+                        }
+                    },
+                    stock: 1,
+                    on_sale: true,
+                    authorName: {
+                        $arrayElemAt: ['$author.name', 0]
+                    }
+                },
+            },
+            {
+                $project: {
+                    __v: 0,
+                    author: 0
+                }
+            }
+        ])
+        .catch(err => ({ status: 500, err }))
+        .then(data => data)
+
+    if (addedData?.err) return [addedData.status, addedData.err]
+
+    return [200, addedData]
+}
+
+
+
+
+books.addFieldsOne = async (bookId) => {
 
     const isValidID = mongoose.Types.ObjectId.isValid(bookId)
     if (!isValidID) return [400, { message: 'invalid ID' }]
@@ -243,7 +304,17 @@ books.addFields = async (bookId) => {
             },
             {
                 $addFields: {
-                    stock: 0,
+                    priceValue: {
+                        $cond: {
+                            if: {
+                                $gt: ['$price', 50000]
+                            },
+                            then: "Expensive",
+                            else: "Inexpensive"
+                        }
+                    },
+                    stock: 1,
+                    on_sale: true,
                     authorName: {
                         $arrayElemAt: ['$author.name', 0]
                     }
@@ -254,7 +325,7 @@ books.addFields = async (bookId) => {
                     __v: 0,
                     author: 0
                 }
-            },
+            }
         ])
         .catch(err => ({ status: 500, err }))
         .then(data => data)

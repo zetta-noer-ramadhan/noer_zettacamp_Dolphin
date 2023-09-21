@@ -8,8 +8,13 @@ router.get('/books/projection', middleware, async (req, res) => {
     return res.status(status).json(data)
 })
 
-router.get('/books/:id/addFields', middleware, async (req, res) => {
-    const [status, data] = await bookService.addFields(req.params.id)
+router.get('/books/addFields', middleware, async (req, res) => {
+    const [status, data] = await bookService.addFields()
+    return res.status(status).json(data)
+})
+
+router.get('/books/:id/addFields', middleware, async(req, res) => {
+    const [status, data] = await bookService.addFieldsOne(req.params.id)
     return res.status(status).json(data)
 })
 
