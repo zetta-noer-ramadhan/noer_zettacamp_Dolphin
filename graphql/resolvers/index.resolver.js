@@ -9,5 +9,5 @@ module.exports = {
     Mutation: {
         ...bookResolver.mutation,
         ...bookshelfResolver.mutation
-    },
+    }
 }

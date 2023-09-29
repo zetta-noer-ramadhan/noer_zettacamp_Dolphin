@@ -283,9 +283,6 @@ bookshelves.update = async (bookshelfId, bookshelfName) => {
     }]
 }
 
-
-
-// TODO: test!
 bookshelves.updateOne = async (bookshelfId, bookshelfData) => {
 
     const isBookshelfIdValid = mongoose.Types.ObjectId.isValid(bookshelfId)

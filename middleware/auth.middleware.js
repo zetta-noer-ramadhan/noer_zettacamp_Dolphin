@@ -84,7 +84,21 @@ const CheckAuthenticationGraphQL = (resolve, root, args, context, info) => {
     return resolve()
 }
 
+const applyMiddlewareOnResolver = (resolver, middleware) => {
+    return resolver.reduce((array, current) => {
+        array[current] = middleware
+        return array
+    }, {})
+}
+
+const resolverWithMiddleware = (queryField, mutationField) => {
+    return {
+        Query: applyMiddlewareOnResolver(queryField, CheckAuthenticationGraphQL),
+        Mutation: applyMiddlewareOnResolver(mutationField, CheckAuthenticationGraphQL)
+    }
+}
+
 module.exports = {
     CheckAuthentication,
-    CheckAuthenticationGraphQL
+    CheckAuthenticationGraphQL: (query, mutation) => resolverWithMiddleware(query, mutation)
 }

@@ -5,11 +5,14 @@ const { CheckAuthenticationGraphQL } = require('../middleware/auth.middleware')
 
 const schema = require('./schema')
 
-const protectedSchema = applyMiddleware(schema, CheckAuthenticationGraphQL)
+const queryField = ['getBooks', 'getBookshelves']
+const mutationField = []
+
+const protectedSchema = applyMiddleware(schema, CheckAuthenticationGraphQL(queryField, mutationField))
 
 const server = new ApolloServer({
     schema: protectedSchema,
-    context: ({req}) => ({
+    context: ({ req }) => ({
         req: req
     })
 })
