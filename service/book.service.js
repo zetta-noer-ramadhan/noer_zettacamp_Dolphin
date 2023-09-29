@@ -109,10 +109,10 @@ books.readOne = async (id) => { // OK
         .catch(err => ({ status: 500, err }))
         .then(data => data)
 
-    if (!bookRead) return [200, {
-        message: 'no book fetched',
-        detail: 'book not found'
-    }]
+    // if (!bookRead) return [200, {
+    //     message: 'no book fetched',
+    //     detail: 'book not found'
+    // }]
 
     if (bookRead?.err) return [bookRead.status, bookRead.err]
 
@@ -128,10 +128,10 @@ books.readAll = async () => { // OK
         .catch(err => ({ status: 500, err }))
         .then(data => data)
 
-    if (booksRead.length === 0) return [200, {
-        message: 'no book fetched',
-        detail: 'empty library'
-    }]
+    // if (booksRead.length === 0) return [200, {
+    //     message: 'no book fetched',
+    //     detail: 'empty library'
+    // }]
 
     if (booksRead?.err) return [booksRead.status, booksRead.err]
 

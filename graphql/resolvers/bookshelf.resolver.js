@@ -1,51 +1,63 @@
+const { ApolloError } = require('apollo-server-express')
 const bookshelfService = require('../../service/bookshelf.service')
 
 const getBookshelves = async (parent) => {
-    const [_, data] = await bookshelfService.getMany()
+    const [status, data] = await bookshelfService.getMany()
+    if (status !== 200) throw new ApolloError(data?.message)
     return data
 }
+
 const getBookshelfById = async (parent, { bookshelfId }) => {
-    const [_, data] = await bookshelfService.get(bookshelfId)
+    const [status, data] = await bookshelfService.get(bookshelfId)
+    if (status !== 200) throw new ApolloError(data?.message)
     return data
 }
 
 const createBookshelves = async (parent, { bookshelvesData }) => {
-    const [_, data] = await bookshelfService.createMany(bookshelvesData)
+    const [status, data] = await bookshelfService.createMany(bookshelvesData)
+    if (status !== 200) throw new ApolloError(data?.message)
     return data
 }
 
 const updateBookshelfById = async (parent, { bookshelfId, bookshelfData }) => {
-    const [_, data] = await bookshelfService.updateOne(bookshelfId, bookshelfData)
+    const [status, data] = await bookshelfService.updateOne(bookshelfId, bookshelfData)
+    if (status !== 200) throw new ApolloError(data?.message)
     return data
 }
 
 const deleteBookshelves = async (parent) => {
-    const [_, data] = await bookshelfService.deleteMany()
+    const [status, data] = await bookshelfService.deleteMany()
+    if (status !== 200) throw new ApolloError(data?.message)
     return data?.message
 }
 
 const deleteBookshelfById = async (parent, { bookshelfId }) => {
-    const [_, data] = await bookshelfService.delete(bookshelfId)
+    const [status, data] = await bookshelfService.delete(bookshelfId)
+    if (status !== 200) throw new ApolloError(data?.message)
     return data?.message
 }
 
 const insertBooksToBookshelf = async (parent, { bookshelfId, booksIds }) => {
-    const [_, data] = await bookshelfService.insert(bookshelfId, booksIds)
+    const [status, data] = await bookshelfService.insert(bookshelfId, booksIds)
+    if (status !== 200) throw new ApolloError(data?.message)
     return data?.message
 }
 
 const insertBookToBookshelf = async (parent, { bookshelfId, bookId }) => {
-    const [_, data] = await bookshelfService.insert(bookshelfId, { bookIds: [bookId] })
+    const [status, data] = await bookshelfService.insert(bookshelfId, { bookIds: [bookId] })
+    if (status !== 200) throw new ApolloError(data?.message)
     return data?.message
 }
 
-const removeBooksFromBookshelf = async (parent, {bookshelfId}) => {
-    const [_, data] = await bookshelfService.removeMany(bookshelfId)
+const removeBooksFromBookshelf = async (parent, { bookshelfId }) => {
+    const [status, data] = await bookshelfService.removeMany(bookshelfId)
+    if (status !== 200) throw new ApolloError(data?.message)
     return data?.message
 }
 
 const removeBookFromBookshelf = async (parent, { bookshelfId, bookId }) => {
-    const [_, data] = await bookshelfService.remove(bookshelfId, bookId)
+    const [status, data] = await bookshelfService.remove(bookshelfId, bookId)
+    if (status !== 200) throw new ApolloError(data?.message)
     return data?.message
 }
 

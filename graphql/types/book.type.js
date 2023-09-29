@@ -24,12 +24,12 @@ const bookType = gql`#graphql
         on_sale: Boolean!
     }
 
-    type Query {
+    extend type Query {
         getBooks: [Book]
         getBookById(bookId: ID!): Book
     }
 
-    type Mutation {
+    extend type Mutation {
         createBooks(booksData: [BookData!]!): [Book],
         updateBookById(bookId: ID!, bookData: BookData!): Book
         deleteBooks: String
