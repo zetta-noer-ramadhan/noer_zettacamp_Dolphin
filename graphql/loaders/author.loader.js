@@ -4,13 +4,11 @@ const authorService = require('../../service/author.service')
 const loader = new DataLoader(async (keys) => {
 
     const [_, data] = await authorService.getMany()
+    const dataMap = new Map()
 
-    const dataMap = data.reduce((array, current) => {
-        array[current._id] = current
-        return array
-    }, [])
+    data.forEach(item => dataMap.set(String(item._id), item))
 
-    return keys.map(key => dataMap[key])
+    return keys.map(key => dataMap.get(String(key)))
 })
 
 module.exports = loader

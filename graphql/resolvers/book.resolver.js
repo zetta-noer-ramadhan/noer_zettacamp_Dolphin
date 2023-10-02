@@ -42,6 +42,12 @@ const author = async (parent, _, context) => {
     return data
 }
 
+const books = async (parent, { }, context) => {
+    if (!parent.books) throw new ApolloError('no books id')
+    const data = await context.bookLoader.loadMany(parent.books)
+    return data
+}
+
 module.exports = {
     query: {
         getAllBooks,
@@ -56,6 +62,9 @@ module.exports = {
     main: {
         Book: {
             author
+        },
+        Author: {
+            books
         }
     }
 }

@@ -3,9 +3,9 @@ const { applyMiddleware } = require('graphql-middleware')
 const { fieldBuilder } = require('../helper/util')
 const { CheckAuthJWT } = require('../middleware/auth.middleware')
 
-const schema = require('./schema')
-const resolver = require('./resolvers/index.resolver')
 const loader = require('./loaders/index.loader')
+const resolver = require('./resolvers/index.resolver')
+const schema = require('./schema')
 
 const queryField = fieldBuilder(Object.keys(resolver.Query), [])
 const mutationField = fieldBuilder(Object.keys(resolver.Mutation), ['login'])
