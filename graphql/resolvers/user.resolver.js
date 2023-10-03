@@ -21,29 +21,8 @@ const getUserByUsername = async (_, { username }, context) => {
 // OK
 const register = async (_, { userData }) => {
     const data = await service.createMany([userData])
-    if (data?.err) throw new ApolloError(data.err)
+    if (data[0]?.err) throw new ApolloError(data[0].err)
     return data[0]
-}
-
-// OK
-const createUsers = async (_, { usersData }) => {
-    const data = await service.createMany(usersData)
-    if (data?.err) throw new ApolloError(data.err)
-    return data
-}
-
-// OK
-const updateUserByUsername = async (_, { username, userData }) => {
-    const data = await service.updateByUsername(username, userData)
-    if (data?.err) throw new ApolloError(data.err)
-    return data
-}
-
-// OK
-const deleteUserByUsername = async (_, { username }) => {
-    const data = await service.deleteByUsername(username)
-    if (data?.err) throw new ApolloError(data.err)
-    return data
 }
 
 module.exports = {
@@ -52,9 +31,6 @@ module.exports = {
         getUserByUsername
     },
     mutation: {
-        register,
-        createUsers,
-        updateUserByUsername,
-        deleteUserByUsername
+        register
     }
 }

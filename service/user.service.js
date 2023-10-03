@@ -52,31 +52,9 @@ const createMany = async (usersData) => {
     return result
 }
 
-// OK
-const updateByUsername = async (username, userData) => {
-
-    const data = await userModel
-        .updateOne({ username: username }, { ...userData })
-        .catch(err => ({ status: 500, err }))
-
-    return data
-}
-
-// OK
-const deleteByUsername = async (username) => {
-
-    const data = await userModel
-        .deleteOne({ username: username })
-        .catch(err => ({ status: 500, err }))
-
-    return data
-}
-
 module.exports = {
     getAll,
     getAllByUsernames,
     getByUsername,
-    createMany,
-    updateByUsername,
-    deleteByUsername
+    createMany
 }

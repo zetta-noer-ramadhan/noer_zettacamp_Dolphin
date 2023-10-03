@@ -45,6 +45,8 @@ const CheckAuthJWT = async (resolve, root, args, context, info) => {
             username: decoded.user
         }
 
+        console.log(`[INFO] ${context.user.username} accessing ${info.fieldName}`)
+
         return resolve(root, args, context, info)
     })
 

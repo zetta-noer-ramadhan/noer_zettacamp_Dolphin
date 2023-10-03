@@ -38,6 +38,7 @@ const updatePlaylistById = async (_, { playlistId, playlistData }) => {
 // OK
 const deletePlaylistById = async (_, { playlistId }) => {
     const data = await service.deleteById(playlistId)
+    console.log(data)
     if (data?.err) throw new ApolloError(data.err)
     return data
 }
