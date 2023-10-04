@@ -15,8 +15,18 @@ const getAll = async () => {
 // OK
 const getAllByIds = async (songIds) => {
 
+    const validIds = songIds.map(songId => {
+        const isSongIdValid = mongoose.Types.ObjectId.isValid(songId)
+
+        if (!isSongIdValid) return null
+
+        const validSongId = mongoose.Types.ObjectId(songId)
+
+        return validSongId
+    })
+
     const data = await songModel
-        .find({ _id: { $in: songIds } })
+        .find({ _id: { $in: validIds } })
         .catch(err => ({ status: 500, err }))
 
     return data
@@ -25,8 +35,17 @@ const getAllByIds = async (songIds) => {
 // OK
 const getById = async (songId) => {
 
+    const isSongIdValid = mongoose.Types.ObjectId.isValid(songId)
+
+    if (!isSongIdValid) return ({
+        status: 400,
+        message: 'Invalid ID'
+    })
+
+    const validSongId = mongoose.Types.ObjectId(songId)
+
     const data = await songModel
-        .findById(songId)
+        .findById(validSongId)
         .catch(err => ({ status: 500, err }))
 
     return data

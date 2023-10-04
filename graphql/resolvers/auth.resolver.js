@@ -10,6 +10,7 @@ const login = async (_, { username, password }, context) => {
     }
 
     const data = await context.userLoader.load(username)
+    if(!data) throw new ApolloError('user not found')
     const checkedPassword = await CheckPassword(password, data.password)
 
     if (data.username !== username || !checkedPassword ) {

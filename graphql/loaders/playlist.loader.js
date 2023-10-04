@@ -9,7 +9,7 @@ const loader = new DataLoader(async (keys) => {
 
     data.forEach(item => dataMap.set(String(item._id), item))
 
-    return keys.map(key => dataMap.get(String(key)))
+    return keys.map(key => dataMap.get(String(key)) || null)
 })
 
 module.exports = loader

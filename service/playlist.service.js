@@ -13,8 +13,19 @@ const getAll = async () => {
 
 // OK
 const getAllByIds = async (playlistIds) => {
+
+    const validIds = playlistIds.map(playlistId => {
+        const isIdValid = mongoose.Types.ObjectId.isValid(playlistId)
+
+        if (!isIdValid) return null
+
+        const validId = mongoose.Types.ObjectId(playlistId)
+
+        return validId
+    })
+
     const data = await playlistModel
-        .find({ _id: { $in: playlistIds } })
+        .find({ _id: { $in: validIds } })
         .catch(err => ({ status: 500, err }))
 
     return data
