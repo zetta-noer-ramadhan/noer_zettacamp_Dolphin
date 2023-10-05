@@ -21,7 +21,7 @@ const ConvertMoment = (date, dateTime) => {
             // #b date & time from string of date
             result.datetime_from_string = moment(date, dateFormat).format(dateTimeFormat)
         }
-    }else{
+    } else {
         result.is_valid_string = false
     }
 
@@ -31,17 +31,8 @@ const ConvertMoment = (date, dateTime) => {
         dateTime.time && typeof dateTime.time === 'string'
     ) {
         // #c date & time from object of date and time
-        const dateSplit = dateTime.date.split('/').map(item => +item)
-        const [day, month, year] = dateSplit
-        const zeroBasedMonth = month > 0 ? month - 1 : month
-
-        const timeSplit = dateTime.time.split(':').map(item => +item)
-        const [hour, minute, second] = timeSplit
-
-        if (dateSplit.length === 3 && timeSplit.length === 3) {
-            const format = { day, month: zeroBasedMonth, year, hour, minute, second }
-            result.datetime_from_object = moment(format).format(dateTimeFormat)
-        }
+        const formattedInput = dateTime.date + ' ' + dateTime.time
+        result.datetime_from_object = moment(formattedInput, dateTimeFormat).format(dateTimeFormat)
     }
 
     console.log(result)
