@@ -1,0 +1,18 @@
+{
+  "dependencies": {
+    "apollo-server-express": "2.8.1",
+    "dataloader": "^2.2.2",
+    "express": "4.16.0",
+    "graphql": "14.4.2",
+    "graphql-middleware": "4.0.0",
+    "graphql-tools": "4.0.5",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "5.6.9"
+  },
+  "scripts": {
+    "lint": "eslint ./"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0"
+  }
+}
