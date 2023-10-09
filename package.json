@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "moment": "^2.29.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.50.0"
+  },
+  "scripts": {
+    "dev": "nodemon app.js",
+    "lint": "eslint ./"
+  }
+}
