@@ -1,0 +1,844 @@
+{
+  "data": [
+    {
+      "playlist_name": "Playlist #1",
+      "description": "a playlist by John Doe with artists like: Anonymous Alliance, REKVMJEJVK, Sigmun, Klô Pelgag, Asian Kung-Fu Generation",
+      "creator": "John Doe",
+      "song_list": [
+        {
+          "title": "Menyulam Azzam",
+          "artist_name": "Anonymous Alliance",
+          "album_name": "Majmu Swara",
+          "year": "2019",
+          "genre": "Hip-Hop",
+          "duration": "04:05"
+        },
+        {
+          "title": "Semerkah Merah Rumah",
+          "artist_name": "Anonymous Alliance",
+          "album_name": "Durma Kota: Musik Pendamping Zine Festival",
+          "year": "2017",
+          "genre": "Hip-Hop",
+          "duration": "04:36"
+        },
+        {
+          "title": "Re-Aksi",
+          "artist_name": "REKVMJEJVK",
+          "album_name": "REKVMJEJVK: Unreleased",
+          "year": "2017",
+          "genre": "Hip-Hop",
+          "duration": "03:12"
+        },
+        {
+          "title": "Surfaith",
+          "artist_name": "REKVMJEJVK",
+          "album_name": "REKVMJEJVK: Unreleased",
+          "year": "2017",
+          "genre": "Hip-Hop",
+          "duration": "03:20"
+        },
+        {
+          "title": "Menjelang Terang",
+          "artist_name": "REKVMJEJVK",
+          "album_name": "REKVMJEJVK: Unreleased",
+          "year": "2017",
+          "genre": "Hip-Hop",
+          "duration": "04:01"
+        },
+        {
+          "title": "Devil in Disguise",
+          "artist_name": "Sigmun",
+          "album_name": "Crimson Eyes",
+          "year": "2015",
+          "genre": "Rock",
+          "duration": "05:26"
+        },
+        {
+          "title": "Prayer of Tempest",
+          "artist_name": "Sigmun",
+          "album_name": "Crimson Eyes",
+          "year": "2015",
+          "genre": "Rock",
+          "duration": "07:25"
+        },
+        {
+          "title": "Golden Tangerine",
+          "artist_name": "Sigmun",
+          "album_name": "Crimson Eyes",
+          "year": "2015",
+          "genre": "Rock",
+          "duration": "06:08"
+        },
+        {
+          "title": "Aerial Chateau",
+          "artist_name": "Sigmun",
+          "album_name": "Crimson Eyes",
+          "year": "2015",
+          "genre": "Rock",
+          "duration": "06:54"
+        },
+        {
+          "title": "Rémora",
+          "artist_name": "Klô Pelgag",
+          "album_name": "Notre-Dame-des-Sept-Douleurs",
+          "year": "2020",
+          "genre": "Pop",
+          "duration": "04:30"
+        },
+        {
+          "title": "Umami",
+          "artist_name": "Klô Pelgag",
+          "album_name": "Notre-Dame-des-Sept-Douleurs",
+          "year": "2020",
+          "genre": "Pop",
+          "duration": "04:29"
+        },
+        {
+          "title": "J'aurai les cheveux longs",
+          "artist_name": "Klô Pelgag",
+          "album_name": "Notre-Dame-des-Sept-Douleurs",
+          "year": "2020",
+          "genre": "Pop",
+          "duration": "03:56"
+        },
+        {
+          "title": "À l'ombre des cyprès",
+          "artist_name": "Klô Pelgag",
+          "album_name": "Notre-Dame-des-Sept-Douleurs",
+          "year": "2020",
+          "genre": "Pop",
+          "duration": "05:40"
+        },
+        {
+          "title": "Für Élise",
+          "artist_name": "Klô Pelgag",
+          "album_name": "Notre-Dame-des-Sept-Douleurs",
+          "year": "2020",
+          "genre": "Pop",
+          "duration": "02:55"
+        },
+        {
+          "title": "君という花",
+          "artist_name": "Asian Kung-Fu Generation",
+          "album_name": "君繋ファイブエム",
+          "year": "2003",
+          "genre": "Rock",
+          "duration": "06:10"
+        },
+        {
+          "title": "ブルートレイン",
+          "artist_name": "Asian Kung-Fu Generation",
+          "album_name": "ファンクラブ",
+          "year": "2006",
+          "genre": "Rock",
+          "duration": "04:19"
+        },
+        {
+          "title": "アフターダーク",
+          "artist_name": "Asian Kung-Fu Generation",
+          "album_name": "ワールド ワールド ワールド",
+          "year": "2008",
+          "genre": "Rock",
+          "duration": "04:12"
+        },
+        {
+          "title": "転がる岩、君に朝が降る",
+          "artist_name": "Asian Kung-Fu Generation",
+          "album_name": "ワールド ワールド ワールド",
+          "year": "2008",
+          "genre": "Rock",
+          "duration": "04:38"
+        },
+        {
+          "title": "ソラニン",
+          "artist_name": "Asian Kung-Fu Generation",
+          "album_name": "マジックディスク",
+          "year": "2010",
+          "genre": "Rock",
+          "duration": "04:33"
+        },
+        {
+          "title": "それでは、また明日",
+          "artist_name": "Asian Kung-Fu Generation",
+          "album_name": "Landmark",
+          "year": "2019",
+          "genre": "Rock",
+          "duration": "03:42"
+        }
+      ],
+      "total_favourite": "19"
+    },
+    {
+      "playlist_name": "Playlist #2",
+      "description": "a playlist by Paul Rosenberg with artists like: Black Country, New Road, Daughters",
+      "creator": "Paul Rosenberg",
+      "song_list": [
+        {
+          "title": "Intro",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "00:54"
+        },
+        {
+          "title": "Chaos Space Marine",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "03:36"
+        },
+        {
+          "title": "Concorde",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "06:03"
+        },
+        {
+          "title": "Bread Song",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "06:20"
+        },
+        {
+          "title": "Good Will Hunting",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "04:58"
+        },
+        {
+          "title": "Haldern",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "05:05"
+        },
+        {
+          "title": "Mark's Theme",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "02:47"
+        },
+        {
+          "title": "The Place Where He Inserted the Blade",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "07:13"
+        },
+        {
+          "title": "Snow Globes",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "09:13"
+        },
+        {
+          "title": "Basketball Shoes",
+          "artist_name": "Black Country, New Road",
+          "album_name": "Ants From Up There",
+          "year": "2022",
+          "genre": "Rock",
+          "duration": "12:37"
+        },
+        {
+          "title": "City Song",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "05:55"
+        },
+        {
+          "title": "Long Road, No Turns",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "05:04"
+        },
+        {
+          "title": "Satan in the Wait",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "07:06"
+        },
+        {
+          "title": "The Flammable Man",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "02:09"
+        },
+        {
+          "title": "The Lords Song",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "02:45"
+        },
+        {
+          "title": "Less Sex",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "04:47"
+        },
+        {
+          "title": "Daughter",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "04:45"
+        },
+        {
+          "title": "The Reason They Hate Me",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "03:55"
+        },
+        {
+          "title": "Ocean Song",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "07:28"
+        },
+        {
+          "title": "Guest House",
+          "artist_name": "Daughters",
+          "album_name": "You Won't Get What You Want",
+          "year": "2018",
+          "genre": "Rock",
+          "duration": "04:29"
+        }
+      ],
+      "total_favourite": "22"
+    },
+    {
+      "playlist_name": "Playlist #3",
+      "description": "a playlist by Rick Rubin with artists like: Lingua Ignota",
+      "creator": "Rick Rubin",
+      "song_list": [
+        {
+          "title": "Faithful Servant Friend of Christ",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "04:42"
+        },
+        {
+          "title": "Do You Doubt Me Traitor",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "09:34"
+        },
+        {
+          "title": "Butcher of the World",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "06:33"
+        },
+        {
+          "title": "May Failure Be Your Noose",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "04:32"
+        },
+        {
+          "title": "Fragrant Is My Many Flower'd Crown",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "05:07"
+        },
+        {
+          "title": "If the Poison Won't Take You My Dogs Will",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "06:30"
+        },
+        {
+          "title": "Day of Tears and Mourning",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "04:43"
+        },
+        {
+          "title": "Sorrow! Sorrow! Sorrow!",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "06:31"
+        },
+        {
+          "title": "Spite Alone Holds Me Aloft",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "07:24"
+        },
+        {
+          "title": "Fucking Deathdealer",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "02:32"
+        },
+        {
+          "title": "I Am the Beast",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Caligula",
+          "year": "2019",
+          "genre": "Noise",
+          "duration": "07:53"
+        },
+        {
+          "title": "The Order of Spiritual Virgins",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Sinner Get Ready",
+          "year": "2021",
+          "genre": "Avant-Garde",
+          "duration": "09:10"
+        },
+        {
+          "title": "I Who Bend the Tall Grasses",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Sinner Get Ready",
+          "year": "2021",
+          "genre": "Avant-Garde",
+          "duration": "06:28"
+        },
+        {
+          "title": "Many Hands",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Sinner Get Ready",
+          "year": "2021",
+          "genre": "Avant-Garde",
+          "duration": "05:15"
+        },
+        {
+          "title": "Pennsylvania Furnace",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Sinner Get Ready",
+          "year": "2021",
+          "genre": "Avant-Garde",
+          "duration": "05:46"
+        },
+        {
+          "title": "Repent Now Confess Now",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Sinner Get Ready",
+          "year": "2021",
+          "genre": "Avant-Garde",
+          "duration": "05:48"
+        },
+        {
+          "title": "The Sacred Linament of Judgement",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Sinner Get Ready",
+          "year": "2021",
+          "genre": "Avant-Garde",
+          "duration": "05:22"
+        },
+        {
+          "title": "Perpetual Flame of Centralia",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Sinner Get Ready",
+          "year": "2021",
+          "genre": "Avant-Garde",
+          "duration": "05:34"
+        },
+        {
+          "title": "Man Is Like a Spring Flower",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Sinner Get Ready",
+          "year": "2021",
+          "genre": "Avant-Garde",
+          "duration": "07:16"
+        },
+        {
+          "title": "The Solitary Brethren of Ephrata",
+          "artist_name": "Lingua Ignota",
+          "album_name": "Sinner Get Ready",
+          "year": "2021",
+          "genre": "Avant-Garde",
+          "duration": "05:11"
+        }
+      ],
+      "total_favourite": "25"
+    },
+    {
+      "playlist_name": "Playlist #4",
+      "description": "a playlist by DJ Premier with artists like: Godspeed You! Black Emperor, Of Monsters and Men",
+      "creator": "DJ Premier",
+      "song_list": [
+        {
+          "title": "The Dead Flag Blues",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "F♯ A♯ ∞",
+          "year": "1998",
+          "genre": "Post-Rock",
+          "duration": "16:27"
+        },
+        {
+          "title": "East Hastings",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "F♯ A♯ ∞",
+          "year": "1998",
+          "genre": "Post-Rock",
+          "duration": "18:00"
+        },
+        {
+          "title": "Providence",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "F♯ A♯ ∞",
+          "year": "1998",
+          "genre": "Post-Rock",
+          "duration": "29:09"
+        },
+        {
+          "title": "Storm",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Lift Your Skinny Fists Like Antennas to Heaven",
+          "year": "2000",
+          "genre": "Post-Rock",
+          "duration": "22:32"
+        },
+        {
+          "title": "Static",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Lift Your Skinny Fists Like Antennas to Heaven",
+          "year": "2000",
+          "genre": "Post-Rock",
+          "duration": "22:35"
+        },
+        {
+          "title": "Sleep",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Lift Your Skinny Fists Like Antennas to Heaven",
+          "year": "2000",
+          "genre": "Post-Rock",
+          "duration": "23:17"
+        },
+        {
+          "title": "Antennas to Heaven...",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Lift Your Skinny Fists Like Antennas to Heaven",
+          "year": "2000",
+          "genre": "Post-Rock",
+          "duration": "18:57"
+        },
+        {
+          "title": "Undoing a Luciferian Towers\"",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Luciferian Towers",
+          "year": "2017",
+          "genre": "Post-Rock",
+          "duration": "07:47"
+        },
+        {
+          "title": "Bosses Hang, Pt. I",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Luciferian Towers",
+          "year": "2017",
+          "genre": "Post-Rock",
+          "duration": "04:39"
+        },
+        {
+          "title": "Bosses Hang, Pt. II",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Luciferian Towers",
+          "year": "2017",
+          "genre": "Post-Rock",
+          "duration": "04:40"
+        },
+        {
+          "title": "Bosses Hang, Pt. III",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Luciferian Towers",
+          "year": "2017",
+          "genre": "Post-Rock",
+          "duration": "05:24"
+        },
+        {
+          "title": "Fam / Famine",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Luciferian Towers",
+          "year": "2017",
+          "genre": "Post-Rock",
+          "duration": "06:44"
+        },
+        {
+          "title": "Anthem for No State, Pt. I",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Luciferian Towers",
+          "year": "2017",
+          "genre": "Post-Rock",
+          "duration": "03:05"
+        },
+        {
+          "title": "Anthem for No State, Pt. II",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Luciferian Towers",
+          "year": "2017",
+          "genre": "Post-Rock",
+          "duration": "02:55"
+        },
+        {
+          "title": "Anthem for No State, Pt. III",
+          "artist_name": "Godspeed You! Black Emperor",
+          "album_name": "Luciferian Towers",
+          "year": "2017",
+          "genre": "Post-Rock",
+          "duration": "08:36"
+        },
+        {
+          "title": "Dirty Paws",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "04:26"
+        },
+        {
+          "title": "King and Lionheart",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "04:35"
+        },
+        {
+          "title": "Numb Bears",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "02:45"
+        },
+        {
+          "title": "Sloom",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "04:42"
+        },
+        {
+          "title": "Little Talks",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "04:24"
+        }
+      ],
+      "total_favourite": "28"
+    },
+    {
+      "playlist_name": "Playlist #5",
+      "description": "a playlist by J Dilla with artists like: Of Monsters and Men",
+      "creator": "J Dilla",
+      "song_list": [
+        {
+          "title": "From Finner",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "03:41"
+        },
+        {
+          "title": "Six Weeks",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "05:32"
+        },
+        {
+          "title": "Love Love Love",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "04:02"
+        },
+        {
+          "title": "Your Bones",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "04:07"
+        },
+        {
+          "title": "Lakehouse",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "My Head Is an Animal",
+          "year": "2012",
+          "genre": "Pop",
+          "duration": "05:42"
+        },
+        {
+          "title": "Crystals",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "04:02"
+        },
+        {
+          "title": "Human",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "03:58"
+        },
+        {
+          "title": "Hunger",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "04:50"
+        },
+        {
+          "title": "Wolves Without Teeth",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "03:58"
+        },
+        {
+          "title": "Empire",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "04:22"
+        },
+        {
+          "title": "Winter Sound",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "03:42"
+        },
+        {
+          "title": "Slow Life",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "05:43"
+        },
+        {
+          "title": "Organs",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "04:31"
+        },
+        {
+          "title": "Black Water",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "04:13"
+        },
+        {
+          "title": "Thousand Eyes",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "04:02"
+        },
+        {
+          "title": "I of the Storm",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "04:36"
+        },
+        {
+          "title": "We Sink",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "04:23"
+        },
+        {
+          "title": "Backyard",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Beneath the Skin",
+          "year": "2015",
+          "genre": "Pop",
+          "duration": "04:19"
+        },
+        {
+          "title": "Alligator",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Fever Dream",
+          "year": "2019",
+          "genre": "Electronica",
+          "duration": "03:04"
+        },
+        {
+          "title": "Ahay",
+          "artist_name": "Of Monsters and Men",
+          "album_name": "Fever Dream",
+          "year": "2019",
+          "genre": "Electronica",
+          "duration": "02:56"
+        }
+      ],
+      "total_favourite": "31"
+    }
+  ]
+}
