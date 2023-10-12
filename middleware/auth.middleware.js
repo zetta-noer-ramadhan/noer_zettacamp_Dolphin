@@ -61,6 +61,13 @@ const resolverWithMiddleware = (queryField, mutationField, middleware) => {
 };
 
 const CheckAuthJWTREST = async (req, res, next) => {
+    if (!req) {
+        return res.status(401).json({ message: 'auth: no req' });
+    }
+    if (!req.headers) {
+        return res.status(401).json({ message: 'auth: no headers' });
+    }
+
     const authorizaztionHeaders = req.headers['authorization'];
     if (!authorizaztionHeaders) {
         return res.status(401).json({ message: 'auth: no auth header' });

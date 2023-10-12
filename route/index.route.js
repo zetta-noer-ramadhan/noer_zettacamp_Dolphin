@@ -26,6 +26,14 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/hook', CheckAuthJWTREST, async (req, res) => {
+    if (!req) {
+        return res.status(400).json({ message: 'bad params: req' });
+    }
+
+    if (!req.body) {
+        return res.status(400).json({ message: 'bad params: req.body' });
+    }
+
     const { songs_data } = req.body;
     if (!songs_data || !songs_data.length) {
         return res.status(400).json({ message: 'bad params: body' });
@@ -41,7 +49,8 @@ router.post('/hook', CheckAuthJWTREST, async (req, res) => {
     }
 
     const config = {
-        webhook_url: 'https://webhook.site/c430248a-7817-4d52-b011-0bc6132e2ca1',
+        webhook_url: 'https://webhook.site/',
+        webhook_token: 'c430248a-7817-4d52-b011-0bc6132e2ca1',
         options: {
             method: 'POST',
             body: JSON.stringify(songs_data),
@@ -53,7 +62,7 @@ router.post('/hook', CheckAuthJWTREST, async (req, res) => {
         },
     };
 
-    return await fetch(config.webhook_url, config.options)
+    return await fetch(config.webhook_url + config.webhook_token, config.options)
         .then(async (response) => {
             if (!response) {
                 res.status(500).json({ message: 'not ok: fetch response' });
