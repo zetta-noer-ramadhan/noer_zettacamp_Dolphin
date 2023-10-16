@@ -4,7 +4,7 @@ const songModel = require('../model/song.model');
 const cronEnabled = true;
 
 const job = new CronJob(
-    '*/5 * * * * *',
+    '* * * * * *',
     async function () {
         if (cronEnabled) {
             await SongPlayer();
@@ -19,12 +19,14 @@ const job = new CronJob(
 
 const SongPlayer = async () => {
     const timestamp = moment().format('HH:mm:ss');
+    const flag = false;
+
     try {
         const data = await songModel.aggregate([
-            { $match: { played: true } },
+            { $match: { played: flag } },
             { $sort: { title: 1, _id: 1 } },
             { $limit: 1 },
-            { $set: { played: false } },
+            { $set: { played: !flag } },
         ]);
 
         if (!data || !data.length) {
@@ -35,7 +37,7 @@ const SongPlayer = async () => {
                 console.log(timestamp, '[ERR] Error when fetching song data');
             } else {
                 console.log(timestamp, '[NOW]', title, 'by', artist_name);
-                await songModel.findByIdAndUpdate(_id, ...data);
+                await songModel.findByIdAndUpdate(_id, ...data).lean();
             }
         }
     } catch (error) {

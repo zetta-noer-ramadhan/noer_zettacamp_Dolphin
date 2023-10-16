@@ -36,25 +36,25 @@ const DeleteSongById = async (_, { song_id }) => {
     return data;
 };
 
-const { jobsFunctionList, jobsList } = require('../../cron/index.job');
+const { jobsFunctionList } = require('../../cron/index.job');
+
 const CronJobTriggerManual = async (_, { job_name }) => {
     if (!Object.keys(jobsFunctionList).length) {
         return 'no job';
     }
+
     if (!job_name) {
         return 'no job name';
     }
 
     try {
         const jobFunction = jobsFunctionList[job_name];
-        const job = jobsList[job_name];
 
-        if (!jobFunction || !job) {
-            return 'job not found';
+        if (!jobFunction) {
+            return job_name + ' not found';
         }
 
-        jobFunction();
-        // job.fireOnTick()
+        await jobFunction();
         return job_name + ' triggered';
     } catch (error) {
         throw new ApolloError(error);
